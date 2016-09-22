@@ -2,11 +2,11 @@
 
 using namespace std;
 
-void printBinaryNumber(int number)
+void PrintBinaryNumber(int number)
 {
     if (number / 2 != 0)
     {
-        printBinaryNumber(number / 2);
+        PrintBinaryNumber(number / 2);
     }
     cout << number % 2;
 }
@@ -19,7 +19,7 @@ int main(int argc, char * argv[])
         << "Usage: copyfile.exe <input file> <output file>\n";
         return 1;
     }
-    printBinaryNumber(atoi(argv[1]));
+    PrintBinaryNumber(atoi(argv[1]));
     cout << endl;
     return 0;
 }
