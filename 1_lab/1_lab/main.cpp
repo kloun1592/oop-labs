@@ -1,14 +1,37 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 using namespace std;
+
+// Returns line number where difference was found or 0 if the content is equal
+
+int CompareContent(istream & firstFile, istream & secondFile)
+{
+    string string1;
+    string string2;
+    int j = 0;
+    
+    while(getline(firstFile, string1) && getline(secondFile, string2))
+    {
+        j++;
+        if(string1 != string2)
+        {
+            cout << "Files are different. Line number is " << j << endl;
+            return 1;
+        }
+    };
+    cout << "Files are equal" << endl;
+    
+    return 0;
+}
 
 int main(int argc, char * argv[])
 {
     if (argc != 3)
     {
-        cout << "Invalid arguments count\n"
-        << "Usage: copyfile.exe <input file> <output file>\n";
+        cout << "Invalid arguments count" << endl
+        << "Usage: copyfile.exe <input file> <output file>" << endl;
         return 1;
     }
     
@@ -16,7 +39,7 @@ int main(int argc, char * argv[])
     
     if (!firstFile.is_open())
     {
-        cout << "Failed to open " << argv[1] << " for reading\n";
+        cout << "Failed to open " << argv[1] << " for reading" << endl;
         return 1;
     }
     
@@ -24,24 +47,9 @@ int main(int argc, char * argv[])
     
     if (!secondFile.is_open())
     {
-        cout << "Failed to open " << argv[2] << " for reading\n";
+        cout << "Failed to open " << argv[2] << " for reading" << endl;
         return 1;
     }
     
-    char string1[256], string2[256];
-    int j = 0;
-    
-    while(!firstFile.eof())
-    {
-        firstFile.getline(string1,256);
-        secondFile.getline(string2,256);
-        j++;
-        if(strcmp(string1,string2) != 0)
-        {
-            cout << "Files are different. Line number is " << j << endl;
-            return 1;
-        }
-    };
-    cout << "Files are equal" << endl;
-    return 0;
+    return CompareContent(firstFile, secondFile);
 }
