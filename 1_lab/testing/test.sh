@@ -2,11 +2,22 @@
 
 successAnswer="test passed"
 unseccessAnswer="!! FAIL !!"
+programToBeTestedLocation="../exec_files/Debug/"
 programToBeTested="1_lab"
+
+#1 параметр - имя программы, проходящей тестирование
+#2 параметр - первый файл для тестирования
+#3 параметр - второй файл для тестирования
+#4 параметр - номер теста
+
+createOutputFile()
+{
+    ${programToBeTestedLocation}${1} ${2} ${3} $input > ./temp_out/output${4}.out
+}
 
 test()
 {
-  ../exec_files/Debug/${1} ${2} ${3} $input > ./temp_out/output${4}.out
+  createOutputFile ${1} ${2} ${3} ${4}
   if cmp ./temp_out/output${4}.out ./right_answers/rightOutput${4}.out;
   then
     echo "$4 $successAnswer"

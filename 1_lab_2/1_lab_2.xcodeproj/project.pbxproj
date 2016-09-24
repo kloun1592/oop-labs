@@ -290,6 +290,7 @@
 				DEVELOPMENT_TEAM = M3CQ36DHT5;
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -300,6 +301,7 @@
 				DEVELOPMENT_TEAM = M3CQ36DHT5;
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
