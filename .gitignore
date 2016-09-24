@@ -9,7 +9,6 @@ build/
 DerivedData/
 
 ## Various settings
-*.xcodeproj
 *.pbxuser
 !default.pbxuser
 *.mode1v3

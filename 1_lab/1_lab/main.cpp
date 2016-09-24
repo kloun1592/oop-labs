@@ -1,12 +1,12 @@
 #include <iostream>
 #include <fstream>
-#include <cstring>
+#include <string>
 
 using namespace std;
 
 // Returns line number where difference was found or 0 if the content is equal
 
-int CompareContent(istream & firstFile, istream & secondFile)
+bool CompareContent(istream & firstFile, istream & secondFile)
 {
     string string1;
     string string2;
