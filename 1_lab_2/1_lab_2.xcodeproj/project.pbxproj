@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD8052591D95B937007F59D3 /* tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8052581D95B937007F59D3 /* tests.cpp */; };
 		DDF42B871D8C66C20090AE72 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF42B861D8C66C20090AE72 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -33,9 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DD0DE3661D9647230040F765 /* Script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Script.sh; sourceTree = "<group>"; };
 		DD642AE31D8C77BB0074606B /* test1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test1; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD8052581D95B937007F59D3 /* tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tests.cpp; sourceTree = "<group>"; };
+		DD6598401D9EE0F600F632CF /* testing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testing; sourceTree = "<group>"; };
 		DDF42B831D8C66C20090AE72 /* 1_lab_2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 1_lab_2; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF42B861D8C66C20090AE72 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +61,7 @@
 			children = (
 				DDF42B851D8C66C20090AE72 /* 1_lab_2 */,
 				DDF42B841D8C66C20090AE72 /* Products */,
+				DD6598401D9EE0F600F632CF /* testing */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,8 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				DDF42B861D8C66C20090AE72 /* main.cpp */,
-				DD0DE3661D9647230040F765 /* Script.sh */,
-				DD8052581D95B937007F59D3 /* tests.cpp */,
 			);
 			path = 1_lab_2;
 			sourceTree = "<group>";
@@ -174,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDF42B871D8C66C20090AE72 /* main.cpp in Sources */,
-				DD8052591D95B937007F59D3 /* tests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +285,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = M3CQ36DHT5;
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
 				OTHER_LDFLAGS = "-lboost_unit_test_framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
