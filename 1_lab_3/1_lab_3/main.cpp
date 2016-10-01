@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool isArgumentsExist(int argc, const int argumentsQuantity)
+bool ArgumentsExists(int argc, const int argumentsQuantity)
 {
     if (argc != argumentsQuantity)
     {
@@ -78,7 +78,7 @@ int main(int argc, char * argv[])
     int matrix2[martixRowQuantity][martixColummQuantity];
     int resMatrix[martixRowQuantity][martixColummQuantity];
     
-    if (isArgumentsExist(argc, 3) && TryReadMatrixFromFile(argv[1], matrix1, martixRowQuantity, martixColummQuantity) && TryReadMatrixFromFile(argv[2], matrix2, martixRowQuantity, martixColummQuantity))
+    if (ArgumentsExists(argc, 3) && TryReadMatrixFromFile(argv[1], matrix1, martixRowQuantity, martixColummQuantity) && TryReadMatrixFromFile(argv[2], matrix2, martixRowQuantity, martixColummQuantity))
     {
         MultiplicateOfTwoMatrix(matrix1, matrix2, resMatrix);
         PrintResultOfMultiplication(resMatrix, martixRowQuantity, martixColummQuantity);
