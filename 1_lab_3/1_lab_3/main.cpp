@@ -38,7 +38,7 @@ bool TryReadMatrixFromFile(const string& matrixFilename, float matrixName[3][3])
     return true;
 }
 
-void MultiplyOfTwoMatrix(float matrix1[3][3], float matrix2[3][3], float resMatrix[3][3])
+void MultiplyOfTwoMatricies(float matrix1[3][3], float matrix2[3][3], float resMatrix[3][3])
 {
     for (int i = 0; i < 3; i++)
     {
@@ -76,7 +76,7 @@ int main(int argc, char * argv[])
     
     if (ArgumentsExist(argc, 3) && TryReadMatrixFromFile(argv[1], matrix1) && TryReadMatrixFromFile(argv[2], matrix2))
     {
-        MultiplyOfTwoMatrix(matrix1, matrix2, resMatrix);
+        MultiplyOfTwoMatricies(matrix1, matrix2, resMatrix);
         PrintResultOfMultiplication(resMatrix);
         return 0;
     }
