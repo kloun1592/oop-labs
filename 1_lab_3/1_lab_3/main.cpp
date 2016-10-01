@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 
 using namespace std;
@@ -58,7 +59,7 @@ void PrintResultOfMultiplication(float resMatrix[3][3])
     {
         for (int x = 0; x < 3; x++)
         {
-            cout << resMatrix[x][y] << " ";
+            cout << setprecision (3) << fixed << resMatrix[x][y] << " ";
         }
         cout << endl;
     }
