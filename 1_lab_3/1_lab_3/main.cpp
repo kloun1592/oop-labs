@@ -21,6 +21,7 @@ bool TryReadMatrixFromFile(const string& matrixFilename, float matrixName[3][3])
     if (!matrixFile.is_open())
     {
         cout << "Cannot open file." << endl;
+        return false;
     }
     for (int y = 0; y < 3; y++)
     {
