@@ -14,9 +14,8 @@ bool ArgumentsExist(int argc, const int argumentsQuantity)
     return true;
 }
 
-bool TryReadMatrixFromFile(const string matrixFilename, int matrixName[3][3], const int martixRowQuantity, const int martixColummQuantity)
+bool TryReadMatrixFromFile(const string& matrixFilename, int matrixName[3][3])
 {
-    char number = 0;
     ifstream matrixFile(matrixFilename);
     if (!matrixFile.is_open())
     {
@@ -26,13 +25,10 @@ bool TryReadMatrixFromFile(const string matrixFilename, int matrixName[3][3], co
     {
         for (int x = 0; x < 3; x++)
         {
-            matrixFile >> (number);
-            if(isdigit(number))
+            
+            if(!(matrixFile >> matrixName[x][y]))
             {
-                number = matrixName[x][y];
-            }
-            else
-            {
+                matrixFile.close();
                 return false;
             }
         }
@@ -41,7 +37,7 @@ bool TryReadMatrixFromFile(const string matrixFilename, int matrixName[3][3], co
     return true;
 }
 
-int MultiplicateOfTwoMatrix(const int matrix1[3][3], const int matrix2[3][3], int resMatrix[3][3])
+void MultiplyOfTwoMatrix(int matrix1[3][3], int matrix2[3][3], int resMatrix[3][3])
 {
     for (int i = 0; i < 3; i++)
     {
@@ -54,10 +50,9 @@ int MultiplicateOfTwoMatrix(const int matrix1[3][3], const int matrix2[3][3], in
             }
         }
     }
-    return resMatrix[3][3];
 };
 
-void PrintResultOfMultiplication(const int resMatrix[3][3],  const int martixRowQuantity, const int martixColummQuantity)
+void PrintResultOfMultiplication(int resMatrix[3][3])
 {
     for (int y = 0; y < 3; y++)
     {
@@ -71,19 +66,19 @@ void PrintResultOfMultiplication(const int resMatrix[3][3],  const int martixRow
 
 int main(int argc, char * argv[])
 {
-    const int martixRowQuantity = 3;
-    const int martixColummQuantity = 3;
+    const int matrixRowQuantity = 3;
+    const int matrixColummQuantity = 3;
     
-    int matrix1[martixRowQuantity][martixColummQuantity];
-    int matrix2[martixRowQuantity][martixColummQuantity];
-    int resMatrix[martixRowQuantity][martixColummQuantity];
+    int matrix1[matrixRowQuantity][matrixColummQuantity];
+    int matrix2[matrixRowQuantity][matrixColummQuantity];
+    int resMatrix[matrixRowQuantity][matrixColummQuantity];
     
-    if (ArgumentsExists(argc, 3) && TryReadMatrixFromFile(argv[1], matrix1, martixRowQuantity, martixColummQuantity) && TryReadMatrixFromFile(argv[2], matrix2, martixRowQuantity, martixColummQuantity))
+    if (ArgumentsExist(argc, 3) && TryReadMatrixFromFile(argv[1], matrix1) && TryReadMatrixFromFile(argv[2], matrix2))
     {
-        MultiplicateOfTwoMatrix(matrix1, matrix2, resMatrix);
-        PrintResultOfMultiplication(resMatrix, martixRowQuantity, martixColummQuantity);
+        MultiplyOfTwoMatrix(matrix1, matrix2, resMatrix);
+        PrintResultOfMultiplication(resMatrix);
         return 0;
     }
-    cout << "something went wrong" << endl;
+    cout << "Something went wrong" << endl;
     return 1;
 }
