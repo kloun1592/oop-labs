@@ -14,7 +14,7 @@ bool ArgumentsExist(int argc, const int argumentsQuantity)
     return true;
 }
 
-bool TryReadMatrixFromFile(const string& matrixFilename, int matrixName[3][3])
+bool TryReadMatrixFromFile(const string& matrixFilename, float matrixName[3][3])
 {
     ifstream matrixFile(matrixFilename);
     if (!matrixFile.is_open())
@@ -37,7 +37,7 @@ bool TryReadMatrixFromFile(const string& matrixFilename, int matrixName[3][3])
     return true;
 }
 
-void MultiplyOfTwoMatrix(int matrix1[3][3], int matrix2[3][3], int resMatrix[3][3])
+void MultiplyOfTwoMatrix(float matrix1[3][3], float matrix2[3][3], float resMatrix[3][3])
 {
     for (int i = 0; i < 3; i++)
     {
@@ -52,7 +52,7 @@ void MultiplyOfTwoMatrix(int matrix1[3][3], int matrix2[3][3], int resMatrix[3][
     }
 };
 
-void PrintResultOfMultiplication(int resMatrix[3][3])
+void PrintResultOfMultiplication(float resMatrix[3][3])
 {
     for (int y = 0; y < 3; y++)
     {
@@ -69,9 +69,9 @@ int main(int argc, char * argv[])
     const int matrixRowQuantity = 3;
     const int matrixColummQuantity = 3;
     
-    int matrix1[matrixRowQuantity][matrixColummQuantity];
-    int matrix2[matrixRowQuantity][matrixColummQuantity];
-    int resMatrix[matrixRowQuantity][matrixColummQuantity];
+    float matrix1[matrixRowQuantity][matrixColummQuantity];
+    float matrix2[matrixRowQuantity][matrixColummQuantity];
+    float resMatrix[matrixRowQuantity][matrixColummQuantity];
     
     if (ArgumentsExist(argc, 3) && TryReadMatrixFromFile(argv[1], matrix1) && TryReadMatrixFromFile(argv[2], matrix2))
     {

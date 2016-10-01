@@ -36,3 +36,18 @@ testNumber=2
 testsInputFilesFolder="./tests_input_files/${testNumber}_test_input_files/"
 
 test $programToBeTested ${testsInputFilesFolder}matrix1.txt ${testsInputFilesFolder}matrix2.txt ${testNumber}
+
+testNumber=3
+testsInputFilesFolder="./tests_input_files/${testNumber}_test_input_files/"
+
+test $programToBeTested ${testsInputFilesFolder}matrix1.txt ${testsInputFilesFolder}matrix2.txt ${testNumber}
+
+testNumber=4
+testsInputFilesFolder="./tests_input_files/${testNumber}_test_input_files/"
+
+test $programToBeTested ${testsInputFilesFolder}matrix1.txt ${testsInputFilesFolder}matrix2.txt ${testNumber}
+
+testNumber=5
+testsInputFilesFolder="./tests_input_files/${testNumber}_test_input_files/"
+
+test $programToBeTested ${testsInputFilesFolder}matrix1.txt ${testsInputFilesFolder}matrix2.txt ${testNumber}
