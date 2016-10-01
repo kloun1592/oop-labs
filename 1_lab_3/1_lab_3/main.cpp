@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool ArgumentsExists(int argc, const int argumentsQuantity)
+bool ArgumentsExist(int argc, const int argumentsQuantity)
 {
     if (argc != argumentsQuantity)
     {
