@@ -16,6 +16,7 @@ bool isArgumentsExist(int argc, const int argumentsQuantity)
 
 bool TryReadMatrixFromFile(const string matrixFilename, int matrixName[3][3], const int martixRowQuantity, const int martixColummQuantity)
 {
+    char number = 0;
     ifstream matrixFile(matrixFilename);
     if (!matrixFile.is_open())
     {
@@ -25,7 +26,15 @@ bool TryReadMatrixFromFile(const string matrixFilename, int matrixName[3][3], co
     {
         for (int x = 0; x < 3; x++)
         {
-            matrixFile >> matrixName[x][y];
+            matrixFile >> (number);
+            if(isdigit(number))
+            {
+                number = matrixName[x][y];
+            }
+            else
+            {
+                return false;
+            }
         }
     }
     matrixFile.close();
@@ -75,6 +84,6 @@ int main(int argc, char * argv[])
         PrintResultOfMultiplication(resMatrix, martixRowQuantity, martixColummQuantity);
         return 0;
     }
-    
+    cout << "something went wrong" << endl;
     return 1;
 }

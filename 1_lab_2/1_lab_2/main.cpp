@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string convertDec2Bin(const int decNumber)
+string ConvertDec2Bin(const int decNumber)
 {
     string binNum = "";
     const int binNumLength = 8;
@@ -20,7 +20,7 @@ string convertDec2Bin(const int decNumber)
     return binNum;
 }
 
-bool isIntNumber(const char *number)
+bool IsIntNumber(const char *number)
 {
     while (*number)
     {
@@ -32,7 +32,7 @@ bool isIntNumber(const char *number)
     return true;
 }
 
-bool isArgumentsExist(int argc, const int argumentsQuantity)
+bool IsArgumentsExist(int argc, const int argumentsQuantity)
 {
     if (argc != argumentsQuantity)
     {
@@ -45,11 +45,11 @@ bool isArgumentsExist(int argc, const int argumentsQuantity)
 
 int main(int argc, char * argv[])
 {
-    if(isArgumentsExist(argc, 2))
+    if(IsArgumentsExist(argc, 2))
     {
-        if(isIntNumber(argv[1]))
+        if(IsIntNumber(argv[1]))
         {
-            cout << convertDec2Bin(atoi(argv[1])) << endl;
+            cout << ConvertDec2Bin(atoi(argv[1])) << endl;
             return 0;
         }
         else
