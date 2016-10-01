@@ -71,9 +71,9 @@ int main(int argc, char * argv[])
     const int matrixRowQuantity = 3;
     const int matrixColummQuantity = 3;
     
-    float matrix1[matrixRowQuantity][matrixColummQuantity];
-    float matrix2[matrixRowQuantity][matrixColummQuantity];
-    float resMatrix[matrixRowQuantity][matrixColummQuantity];
+    float matrix1[matrixRowQuantity][matrixColummQuantity],
+          matrix2[matrixRowQuantity][matrixColummQuantity],
+          resMatrix[matrixRowQuantity][matrixColummQuantity];
     
     if (ArgumentsExist(argc, 3) && TryReadMatrixFromFile(argv[1], matrix1) && TryReadMatrixFromFile(argv[2], matrix2))
     {
