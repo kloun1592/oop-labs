@@ -39,7 +39,7 @@ bool TryReadMatrixFromFile(const string& matrixFilename, float matrixName[3][3])
     return true;
 }
 
-void MultiplyOfTwoMatricies(float matrix1[3][3], float matrix2[3][3], float resMatrix[3][3])
+void MultiplyOfTwoMatricies(const float matrix1[3][3], const float matrix2[3][3], float resMatrix[3][3])
 {
     for (int i = 0; i < 3; i++)
     {
@@ -52,7 +52,7 @@ void MultiplyOfTwoMatricies(float matrix1[3][3], float matrix2[3][3], float resM
             }
         }
     }
-};
+}
 
 void PrintResultOfMultiplication(float resMatrix[3][3])
 {
