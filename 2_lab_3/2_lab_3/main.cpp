@@ -6,8 +6,7 @@ using namespace std;
 
 string FindWordInDictionary(string const& word, istream & dicitonaryFile, map <string, string> dictionary, map <string, string> newWordsdictionary)
 {
-    string originalWord = "";
-    string translate = "";
+    string originalWord, translate = "";
     
     while (dicitonaryFile >> originalWord && dicitonaryFile >> translate)
     {
@@ -57,10 +56,7 @@ string EnterWord()
 
 int main(int argc, const char * argv[])
 {
-    string word = "";
-    string translate = "";
-    string saveChangesStatus = "";
-    string findableWord = "";
+    string word, translate, saveChangesStatus, findableWord = "";
     map <string, string> dictionary;
     map <string, string> newWordsdictionary;
     
