@@ -57,8 +57,7 @@ string EnterWord()
 int main(int argc, const char * argv[])
 {
     string word, translate, saveChangesStatus, findableWord = "";
-    map <string, string> dictionary;
-    map <string, string> newWordsdictionary;
+    map <string, string> dictionary, newWordsdictionary;;
     
     while (true)
     {
