@@ -2,7 +2,6 @@
 #include <fstream>
 #include <map>
 
-
 using namespace std;
 
 string FindWordInDictionary(string const& word, istream & dicitonaryFile, map <string, string> dictionary, map <string, string> newWordsdictionary)
@@ -117,7 +116,6 @@ int main(int argc, const char * argv[])
             {
                 AddWordInDictionary(word, translate, &newWordsdictionary);
                 cout << "Слово '" << word << "' сохранено в словаре как '" << translate << "'." << endl;
-                continue;
             }
         }
     };
