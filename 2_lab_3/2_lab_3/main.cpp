@@ -34,9 +34,9 @@ string FindWordInDictionary(string const& word, istream & dicitonaryFile, map <s
     return "";
 }
 
-void AddWordInDictionary(string const& engWord, string const& translate, map <string, string> *dictionary)
+void AddWordInDictionary(string const& word, string const& translate, map <string, string> *dictionary)
 {
-    dictionary->insert(pair<string,string>(engWord, translate));
+    dictionary->insert(pair<string,string>(word, translate));
 }
 
 void SaveDictionaryChanges(const map <string, string> dictionary, ofstream & dictionaryFile)
@@ -49,19 +49,19 @@ void SaveDictionaryChanges(const map <string, string> dictionary, ofstream & dic
 
 string EnterWord()
 {
-    string engWord = "";
+    string word = "";
     cout << "Введите слово: ";
-    cin >> engWord;
-    transform(engWord.begin(), engWord.end(), engWord.begin(), ::tolower);
-    return engWord;
+    cin >> word;
+    transform(word.begin(), word.end(), word.begin(), ::tolower);
+    return word;
 }
 
 int main(int argc, const char * argv[])
 {
     string word;
     string translate;
-    string findableWord;
     string saveChangesStatus;
+    string findableWord;
     map <string, string> dictionary;
     map <string, string> newWordsdictionary;
     
@@ -101,7 +101,6 @@ int main(int argc, const char * argv[])
             return 1;
         }
         findableWord = FindWordInDictionary(word, dictionaryFile, dictionary, newWordsdictionary);
-        
         if (findableWord != "")
         {
             cout << findableWord << endl;
