@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include <string>
+
 
 using namespace std;
 
@@ -103,7 +103,13 @@ int main(int argc, const char * argv[])
         }
         
         ifstream dictionaryFile(argv[1]);
+        if (!dictionaryFile.is_open())
+        {
+            cout << "Не получается открыть словарь '" << argv[1] << "'" << endl;
+            return 1;
+        }
         findableWord = findWordInDictionary(word, dictionaryFile, dictionary, newWordsdictionary);
+        
         if (findableWord != "")
         {
             cout << findableWord << endl;
