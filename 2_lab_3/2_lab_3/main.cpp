@@ -5,14 +5,6 @@
 
 using namespace std;
 
-void PrintDictionary(map <string, string> const& dictonary)
-{
-    for (auto it = dictonary.begin(); it != dictonary.end(); it++)
-    {
-        cout << it->first << " : " << it->second << endl;
-    }
-}
-
 string FindWordInDictionary(string const& word, istream & dicitonaryFile, map <string, string> dictionary, map <string, string> newWordsdictionary)
 {
     string originalWord = "";
