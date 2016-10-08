@@ -57,10 +57,10 @@ string EnterWord()
 
 int main(int argc, const char * argv[])
 {
-    string word;
-    string translate;
-    string saveChangesStatus;
-    string findableWord;
+    string word = "";
+    string translate = "";
+    string saveChangesStatus = "";
+    string findableWord = "";
     map <string, string> dictionary;
     map <string, string> newWordsdictionary;
     
