@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void printDictionary(map <string, string> const& dictonary)
+void PrintDictionary(map <string, string> const& dictonary)
 {
     for (auto it = dictonary.begin(); it != dictonary.end(); it++)
     {
@@ -13,7 +13,7 @@ void printDictionary(map <string, string> const& dictonary)
     }
 }
 
-string findWordInDictionary(string const& word, istream & dicitonaryFile, map <string, string> dictionary, map <string, string> newWordsdictionary)
+string FindWordInDictionary(string const& word, istream & dicitonaryFile, map <string, string> dictionary, map <string, string> newWordsdictionary)
 {
     string originalWord = "";
     string translate = "";
@@ -42,12 +42,12 @@ string findWordInDictionary(string const& word, istream & dicitonaryFile, map <s
     return "";
 }
 
-void addWordInDictionary(string const& engWord, string const& translate, map <string, string> *dictionary)
+void AddWordInDictionary(string const& engWord, string const& translate, map <string, string> *dictionary)
 {
     dictionary->insert(pair<string,string>(engWord, translate));
 }
 
-void saveDictionaryChanges(const map <string, string> dictionary, ofstream & dictionaryFile)
+void SaveDictionaryChanges(const map <string, string> dictionary, ofstream & dictionaryFile)
 {
     for (auto it = dictionary.begin(); it != dictionary.end(); it++)
     {
@@ -55,7 +55,7 @@ void saveDictionaryChanges(const map <string, string> dictionary, ofstream & dic
     }
 }
 
-string enterWord()
+string EnterWord()
 {
     string engWord = "";
     cout << "Введите слово: ";
@@ -75,7 +75,7 @@ int main(int argc, const char * argv[])
     
     while (true)
     {
-        word = enterWord();
+        word = EnterWord();
         if (word == "...")
         {
             if(newWordsdictionary.size() > 0)
@@ -85,7 +85,7 @@ int main(int argc, const char * argv[])
                 if (saveChangesStatus == "Y" || saveChangesStatus == "y")
                 {
                     ofstream dictionaryFile(argv[1], ofstream::app);
-                    saveDictionaryChanges(newWordsdictionary, dictionaryFile);
+                    SaveDictionaryChanges(newWordsdictionary, dictionaryFile);
                     cout << "Изменения были сохранены. До свидания." << endl;
                     break;
                 }
@@ -108,7 +108,7 @@ int main(int argc, const char * argv[])
             cout << "Не получается открыть словарь '" << argv[1] << "'" << endl;
             return 1;
         }
-        findableWord = findWordInDictionary(word, dictionaryFile, dictionary, newWordsdictionary);
+        findableWord = FindWordInDictionary(word, dictionaryFile, dictionary, newWordsdictionary);
         
         if (findableWord != "")
         {
@@ -124,7 +124,7 @@ int main(int argc, const char * argv[])
             }
             else
             {
-                addWordInDictionary(word, translate, &newWordsdictionary);
+                AddWordInDictionary(word, translate, &newWordsdictionary);
                 cout << "Слово '" << word << "' сохранено в словаре как '" << translate << "'." << endl;
                 continue;
             }
