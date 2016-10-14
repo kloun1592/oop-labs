@@ -1,13 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
 using namespace std;
 
-string HTMLEncode(string const& uncodedFileString)
+string HTMLEncode(string & uncodedFileString)
 {
-    string buffer;
-    buffer = uncodedFileString.size() * 1.1;
+    string buffer = "";
+    buffer.reserve(uncodedFileString.size());
     for (size_t pos = 0; pos != uncodedFileString.size(); ++pos)
     {
         switch (uncodedFileString[pos])
@@ -20,13 +19,13 @@ string HTMLEncode(string const& uncodedFileString)
             default:   buffer.append(&uncodedFileString[pos], 1); break;
         }
     }
-    return buffer;
+    uncodedFileString.swap(buffer);
+    return uncodedFileString;
 }
 
-int main(int argc, const char * argv[])
+int main2(int argc, const char * argv[])
 {
-    string uncodedFileString;
-    string codedString;
+    string uncodedFileString = codedString = "";
     
     ifstream uncodedFile(argv[1]);
     if (!uncodedFile.is_open())
@@ -39,6 +38,7 @@ int main(int argc, const char * argv[])
     {
         codedString = HTMLEncode(uncodedFileString);
         cout << codedString << endl;
-    };
+    }
+
     return 0;
 }

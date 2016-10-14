@@ -1,17 +1,13 @@
 #include <iostream>
+#include <sstream>
 #include <fstream>
+#include <string>
 #include <map>
 
 using namespace std;
 
-string FindWordInDictionary(string const& word, istream & dicitonaryFile, map <string, string> dictionary, map <string, string> newWordsdictionary)
+string FindWordInDictionary(string const& word, map <string, string> dictionary, map <string, string> newWordsdictionary)
 {
-    string originalWord, translate = "";
-    
-    while (dicitonaryFile >> originalWord && dicitonaryFile >> translate)
-    {
-        dictionary[originalWord] = translate;
-    };
     
     for (auto it = dictionary.begin(); it != dictionary.end(); it++)
     {
@@ -32,16 +28,17 @@ string FindWordInDictionary(string const& word, istream & dicitonaryFile, map <s
     return "";
 }
 
-void AddWordInDictionary(string const& word, string const& translate, map <string, string> *dictionary)
+map <string, string> AddWordInDictionary(string const& word, string const& translate, map <string, string> dictionary)
 {
-    dictionary->insert(pair<string,string>(word, translate));
+    dictionary.insert(pair<string,string>(word, translate));
+    return dictionary;
 }
 
 void SaveDictionaryChanges(const map <string, string> dictionary, ofstream & dictionaryFile)
 {
     for (auto it = dictionary.begin(); it != dictionary.end(); it++)
     {
-        dictionaryFile << endl << it->first << " " << it->second;
+        dictionaryFile << endl << it->first << "," << it->second;
     }
 }
 
@@ -49,69 +46,98 @@ string EnterWord()
 {
     string word = "";
     cout << "Введите слово: ";
-    cin >> word;
+    getline(cin, word);
     transform(word.begin(), word.end(), word.begin(), ::tolower);
     return word;
 }
 
-int main(int argc, const char * argv[])
+bool CheckForExitDicitonary(string const& word, map <string, string> & newWordsdictionary, ofstream & dictionaryFile)
 {
-    string word, translate, saveChangesStatus, findableWord = "";
-    map <string, string> dictionary, newWordsdictionary;;
+    string saveChangesStatus = "";
+    if (word == "...")
+    {
+        if (newWordsdictionary.size() > 0)
+        {
+            cout << "В словарь были внесены изменения. Введите Y или y для сохранения перед выходом." << endl;
+            cin >> saveChangesStatus;
+            if (saveChangesStatus == "Y" || saveChangesStatus == "y")
+            {
+                SaveDictionaryChanges(newWordsdictionary, dictionaryFile);
+                cout << "Изменения были сохранены. До свидания." << endl;
+                return true;
+            }
+            else
+            {
+                cout << "Изменения НЕ были сохранены. До свидания." << endl;
+                return true;
+            }
+        }
+        else
+        {
+            cout << "Изменения не были внесены. До свидания." << endl;
+            return true;
+        }
+    }
+    return false;
+}
+
+void TreatmentWordByDicionary(string const& word, map <string, string> & newWordsdictionary, map <string, string> dictionary)
+{
+    string foundWord = "";
+    foundWord = FindWordInDictionary(word, dictionary, newWordsdictionary);
+    
+    string translate = "";
+    if (foundWord != "")
+    {
+        cout << foundWord << endl;
+    }
+    else
+    {
+        cout << "Неизвестное слово '" << word << "'. Введите перевод или пустую строку для отказа." << endl;
+        getline(cin, translate);
+        if (translate == "")
+        {
+            cout << "Слово '" << word << "' было проигнорировано." << endl;
+        }
+        else
+        {
+            newWordsdictionary = AddWordInDictionary(word, translate, newWordsdictionary);
+            cout << "Слово '" << word << "' сохранено в словаре как '" << translate << "'." << endl;
+        }
+    }
+}
+
+void CreateDictionary(map <string, string> & dictionary, ifstream & dictionaryFile)
+{
+    string originalWord, translate = "";
+    
+    while (getline(dictionaryFile, originalWord, ',') &&
+           getline(dictionaryFile, translate, '\n'))
+    {
+        dictionary[originalWord] = translate;
+    }
+    
+}
+
+int main2(int argc, const char * argv[])
+{
+    string word, foundWord = "";
+    map <string, string> dictionary, newWordsdictionary;
+    
+    ifstream dictionaryFile(argv[1]);
+    CreateDictionary(dictionary, dictionaryFile);
     
     while (true)
     {
         word = EnterWord();
-        if (word == "...")
+        ofstream dictionaryFile(argv[1], ofstream::app);
+        if (CheckForExitDicitonary(word, newWordsdictionary, dictionaryFile))
         {
-            if(newWordsdictionary.size() > 0)
-            {
-                cout << "В словарь были внесены изменения. Введите Y или y для сохранения перед выходом." << endl;
-                cin >> saveChangesStatus;
-                if (saveChangesStatus == "Y" || saveChangesStatus == "y")
-                {
-                    ofstream dictionaryFile(argv[1], ofstream::app);
-                    SaveDictionaryChanges(newWordsdictionary, dictionaryFile);
-                    cout << "Изменения были сохранены. До свидания." << endl;
-                    break;
-                }
-                else
-                {
-                    cout << "Изменения НЕ были сохранены. До свидания." << endl;
-                    break;
-                }
-            }
-            else
-            {
-                cout << "Изменения не были внесены. До свидания." << endl;
-                break;
-            }
-        }
-        
-        ifstream dictionaryFile(argv[1]);
-        if (!dictionaryFile.is_open())
-        {
-            cout << "Не получается открыть словарь '" << argv[1] << "'" << endl;
-            return 1;
-        }
-        findableWord = FindWordInDictionary(word, dictionaryFile, dictionary, newWordsdictionary);
-        if (findableWord != "")
-        {
-            cout << findableWord << endl;
+            break;
         }
         else
         {
-            cout << "Неизвестное слово '" << word << "'. Введите перевод или пустую строку для отказа." << endl;
-            cin >> translate;
-            if (translate == "")
-            {
-                cout << "Слово '" << word << "' было проигнорировано.";
-            }
-            else
-            {
-                AddWordInDictionary(word, translate, &newWordsdictionary);
-                cout << "Слово '" << word << "' сохранено в словаре как '" << translate << "'." << endl;
-            }
+            TreatmentWordByDicionary(word, newWordsdictionary, dictionary);
         }
     };
     return 0;
