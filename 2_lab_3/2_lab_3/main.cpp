@@ -51,7 +51,7 @@ string EnterWord()
     return word;
 }
 
-bool CheckForExitDicitonary(string const& word, map <string, string> & newWordsdictionary, ofstream & dictionaryFile)
+bool CheckForExitDictionary(string const& word, map <string, string> & newWordsdictionary, ofstream & dictionaryFile)
 {
     string saveChangesStatus = "";
     if (word == "...")
@@ -81,7 +81,7 @@ bool CheckForExitDicitonary(string const& word, map <string, string> & newWordsd
     return false;
 }
 
-void TreatmentWordByDicionary(string const& word, map <string, string> & newWordsdictionary, map <string, string> dictionary)
+void TreatmentWordByDictionary(string const& word, map <string, string> & newWordsdictionary, map <string, string> dictionary)
 {
     string foundWord = "";
     foundWord = FindWordInDictionary(word, dictionary, newWordsdictionary);
@@ -131,13 +131,13 @@ int main2(int argc, const char * argv[])
     {
         word = EnterWord();
         ofstream dictionaryFile(argv[1], ofstream::app);
-        if (CheckForExitDicitonary(word, newWordsdictionary, dictionaryFile))
+        if (CheckForExitDictionary(word, newWordsdictionary, dictionaryFile))
         {
             break;
         }
         else
         {
-            TreatmentWordByDicionary(word, newWordsdictionary, dictionary);
+            TreatmentWordByDictionary(word, newWordsdictionary, dictionary);
         }
     };
     return 0;

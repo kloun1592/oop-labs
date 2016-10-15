@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD238B901DB121A200ACB942 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD238B8E1DB121A200ACB942 /* test.cpp */; };
-		DD238B931DB1265800ACB942 /* boost_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD238B921DB1263200ACB942 /* boost_tests.cpp */; };
 		DD2B5EF01DA82FE100412251 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD2B5EEF1DA82FE100412251 /* main.cpp */; };
+		DDF678061DB1F93600F4A08D /* boost_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD238B921DB1263200ACB942 /* boost_tests.cpp */; };
+		DDF678071DB1F93A00F4A08D /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD238B8E1DB121A200ACB942 /* test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -176,8 +176,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD238B931DB1265800ACB942 /* boost_tests.cpp in Sources */,
-				DD238B901DB121A200ACB942 /* test.cpp in Sources */,
+				DDF678061DB1F93600F4A08D /* boost_tests.cpp in Sources */,
+				DDF678071DB1F93A00F4A08D /* test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,9 +305,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = M3CQ36DHT5;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
-				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -316,9 +316,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = M3CQ36DHT5;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
-				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
