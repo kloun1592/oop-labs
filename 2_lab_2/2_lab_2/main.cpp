@@ -3,25 +3,25 @@
 #include <string>
 using namespace std;
 
-string HTMLEncode(string & codedString)
+string HTMLEncode(string const & codedString)
 {
     string encodeString = "";
-    for (char& letter : codedString)
+    for (char letter : codedString)
     {
         switch (letter)
         {
-            case '&':  encodeString += " &amp; ";  break;
-            case '\"': encodeString += " &quot; "; break;
-            case '\'': encodeString += " &apos; "; break;
-            case '<':  encodeString += " &lt; ";   break;
-            case '>':  encodeString += " &gt; ";   break;
-            default:   encodeString += letter;     break;
+            case '&':  encodeString.append("&amp;");    break;
+            case '\"': encodeString.append("&quot;");   break;
+            case '\'': encodeString.append("&apos;");   break;
+            case '<':  encodeString.append("&lt;");     break;
+            case '>':  encodeString.append("&gt;");     break;
+            default:   encodeString.append(&letter, 1); break;
         }
     }
     return encodeString;
 }
 
-int main(int argc, const char * argv[])
+int main2(int argc, const char * argv[])
 {
     string codedString = "";
     
@@ -30,6 +30,6 @@ int main(int argc, const char * argv[])
         cin >> codedString;
         cout << HTMLEncode(codedString);
     }
-
+    
     return 0;
 }

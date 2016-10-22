@@ -1,5 +1,5 @@
-#define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_NO_MAIN
+#define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 #include "../2_lab_2/main.cpp"
 
