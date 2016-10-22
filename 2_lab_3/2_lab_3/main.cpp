@@ -44,7 +44,7 @@ void SaveDictionaryChanges(const map <string, string> dictionary, ofstream & dic
 
 string EnterWord()
 {
-    string word = "";
+    string word;
     cout << "Введите слово: ";
     getline(cin, word);
     transform(word.begin(), word.end(), word.begin(), ::tolower);
@@ -83,10 +83,10 @@ bool CheckForExitDictionary(string const& word, map <string, string> & newWordsd
 
 void TreatmentWordByDictionary(string const& word, map <string, string> & newWordsdictionary, map <string, string> dictionary)
 {
-    string foundWord = "";
+    string foundWord;
     foundWord = FindWordInDictionary(word, dictionary, newWordsdictionary);
     
-    string translate = "";
+    string translate;
     if (foundWord != "")
     {
         cout << foundWord << endl;
@@ -109,7 +109,7 @@ void TreatmentWordByDictionary(string const& word, map <string, string> & newWor
 
 void CreateDictionary(map <string, string> & dictionary, ifstream & dictionaryFile)
 {
-    string originalWord, translate = "";
+    string originalWord, translate;
     
     while (getline(dictionaryFile, originalWord, ',') &&
            getline(dictionaryFile, translate, '\n'))
@@ -121,7 +121,7 @@ void CreateDictionary(map <string, string> & dictionary, ifstream & dictionaryFi
 
 int main2(int argc, const char * argv[])
 {
-    string word, foundWord = "";
+    string word, foundWord;
     map <string, string> dictionary, newWordsdictionary;
     
     ifstream dictionaryFile(argv[1]);

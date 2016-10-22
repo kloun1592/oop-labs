@@ -5,25 +5,25 @@ using namespace std;
 
 string HTMLEncode(string const & codedString)
 {
-    string encodeString = "";
+    string encodedString;
     for (char letter : codedString)
     {
         switch (letter)
         {
-            case '&':  encodeString.append("&amp;");    break;
-            case '\"': encodeString.append("&quot;");   break;
-            case '\'': encodeString.append("&apos;");   break;
-            case '<':  encodeString.append("&lt;");     break;
-            case '>':  encodeString.append("&gt;");     break;
-            default:   encodeString.append(&letter, 1); break;
+            case '&':  encodedString.append("&amp;");    break;
+            case '\"': encodedString.append("&quot;");   break;
+            case '\'': encodedString.append("&apos;");   break;
+            case '<':  encodedString.append("&lt;");     break;
+            case '>':  encodedString.append("&gt;");     break;
+            default:   encodedString.append(&letter, 1); break;
         }
     }
-    return encodeString;
+    return encodedString;
 }
 
-int main2(int argc, const char * argv[])
+int main(int argc, const char * argv[])
 {
-    string codedString = "";
+    string codedString;
     
     while(true)
     {
