@@ -21,7 +21,7 @@ string HTMLEncode(string const & codedString)
     return encodedString;
 }
 
-int main(int argc, const char * argv[])
+int main2(int argc, const char * argv[])
 {
     string codedString;
     
