@@ -7,10 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD5214631DCCE79C00753DDA /* tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF31DC46C860094FEE8 /* tests.cpp */; };
+		DD5214641DCCE79F00753DDA /* boost_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF11DC46C860094FEE8 /* boost_main.cpp */; };
 		DDB5A0261DC3B54B00205173 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB5A0251DC3B54B00205173 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		DD52145A1DCCE79500753DDA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		DDB5A0201DC3B54B00205173 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -23,14 +34,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DD222DF11DC46C860094FEE8 /* boost_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = boost_main.cpp; sourceTree = "<group>"; };
+		DD222DF11DC46C860094FEE8 /* boost_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = boost_main.cpp; sourceTree = "<group>"; wrapsLines = 1; };
 		DD222DF31DC46C860094FEE8 /* tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tests.cpp; sourceTree = "<group>"; };
+		DD52145C1DCCE79500753DDA /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB5A0221DC3B54B00205173 /* 3_lab_1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 3_lab_1; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB5A0251DC3B54B00205173 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DDB5A02C1DC3B57F00205173 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DD5214591DCCE79500753DDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDB5A01F1DC3B54B00205173 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -63,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				DDB5A0221DC3B54B00205173 /* 3_lab_1 */,
+				DD52145C1DCCE79500753DDA /* tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +99,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DD52145B1DCCE79500753DDA /* tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD5214621DCCE79500753DDA /* Build configuration list for PBXNativeTarget "tests" */;
+			buildPhases = (
+				DD5214581DCCE79500753DDA /* Sources */,
+				DD5214591DCCE79500753DDA /* Frameworks */,
+				DD52145A1DCCE79500753DDA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tests;
+			productName = tests;
+			productReference = DD52145C1DCCE79500753DDA /* tests */;
+			productType = "com.apple.product-type.tool";
+		};
 		DDB5A0211DC3B54B00205173 /* 3_lab_1 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDB5A0291DC3B54B00205173 /* Build configuration list for PBXNativeTarget "3_lab_1" */;
@@ -105,6 +142,11 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Михаил Романов";
 				TargetAttributes = {
+					DD52145B1DCCE79500753DDA = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = M3CQ36DHT5;
+						ProvisioningStyle = Automatic;
+					};
 					DDB5A0211DC3B54B00205173 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = M3CQ36DHT5;
@@ -125,11 +167,21 @@
 			projectRoot = "";
 			targets = (
 				DDB5A0211DC3B54B00205173 /* 3_lab_1 */,
+				DD52145B1DCCE79500753DDA /* tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DD5214581DCCE79500753DDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD5214641DCCE79F00753DDA /* boost_main.cpp in Sources */,
+				DD5214631DCCE79C00753DDA /* tests.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDB5A01E1DC3B54B00205173 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,6 +193,28 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		DD5214601DCCE79500753DDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M3CQ36DHT5;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DD5214611DCCE79500753DDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M3CQ36DHT5;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		DDB5A0271DC3B54B00205173 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -247,6 +321,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DD5214621DCCE79500753DDA /* Build configuration list for PBXNativeTarget "tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD5214601DCCE79500753DDA /* Debug */,
+				DD5214611DCCE79500753DDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		DDB5A01D1DC3B54B00205173 /* Build configuration list for PBXProject "3_lab_1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,24 +1,32 @@
+struct Point
+{
+    int x;
+    int y;
+};
+
+struct RecParam
+{
+    int leftX;
+    int topY;
+    int width;
+    int height;
+};
+
 class CRectangle
 {
 public:
-    struct Point
-    {
-        int x;
-        int y;
-    };
     struct Size
     {
         int width;
-        int heigth;
+        int height;
     };
     void Move(int dx, int dy);
     void Scale(int sx, int sy);
-    void SetRectangleParametrs(std::ifstream & commandsFile);
+    void SetRectangleParametrs(RecParam const& recParam);
+    RecParam GetParametrs();
     bool Intersect(CRectangle const& other);
     int CountArea()const;
     int CountPerimetr()const;
-    int SetBottomY()const;
-    int SetRightX()const;
     Point GetLeftTopPoint()const;
     Point GetRightBottomPoint()const;
     Size GetSize()const;
