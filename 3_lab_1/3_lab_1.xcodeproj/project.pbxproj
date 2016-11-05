@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DD5214631DCCE79C00753DDA /* tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF31DC46C860094FEE8 /* tests.cpp */; };
-		DD5214641DCCE79F00753DDA /* boost_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF11DC46C860094FEE8 /* boost_main.cpp */; };
+		DD5214641DCCE79F00753DDA /* RectangleTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF11DC46C860094FEE8 /* RectangleTests.cpp */; };
 		DDB5A0261DC3B54B00205173 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB5A0251DC3B54B00205173 /* main.cpp */; };
+		DDDB893F1DCDAC5E005E9CED /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDB893E1DCDAC5E005E9CED /* Rectangle.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,12 +35,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DD222DF11DC46C860094FEE8 /* boost_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = boost_main.cpp; sourceTree = "<group>"; wrapsLines = 1; };
+		DD222DF11DC46C860094FEE8 /* RectangleTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectangleTests.cpp; sourceTree = "<group>"; wrapsLines = 1; };
 		DD222DF31DC46C860094FEE8 /* tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tests.cpp; sourceTree = "<group>"; };
 		DD52145C1DCCE79500753DDA /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB5A0221DC3B54B00205173 /* 3_lab_1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 3_lab_1; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB5A0251DC3B54B00205173 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		DDB5A02C1DC3B57F00205173 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		DDB5A02C1DC3B57F00205173 /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		DDDB893E1DCDAC5E005E9CED /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,7 @@
 		DD222DF01DC46C860094FEE8 /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				DD222DF11DC46C860094FEE8 /* boost_main.cpp */,
+				DD222DF11DC46C860094FEE8 /* RectangleTests.cpp */,
 				DD222DF31DC46C860094FEE8 /* tests.cpp */,
 			);
 			path = tests;
@@ -91,7 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				DDB5A0251DC3B54B00205173 /* main.cpp */,
-				DDB5A02C1DC3B57F00205173 /* main.h */,
+				DDB5A02C1DC3B57F00205173 /* Rectangle.h */,
+				DDDB893E1DCDAC5E005E9CED /* Rectangle.cpp */,
 			);
 			path = 3_lab_1;
 			sourceTree = "<group>";
@@ -177,7 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5214641DCCE79F00753DDA /* boost_main.cpp in Sources */,
+				DD5214641DCCE79F00753DDA /* RectangleTests.cpp in Sources */,
 				DD5214631DCCE79C00753DDA /* tests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDB5A0261DC3B54B00205173 /* main.cpp in Sources */,
+				DDDB893F1DCDAC5E005E9CED /* Rectangle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +332,7 @@
 				DD5214611DCCE79500753DDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DDB5A01D1DC3B54B00205173 /* Build configuration list for PBXProject "3_lab_1" */ = {
 			isa = XCConfigurationList;

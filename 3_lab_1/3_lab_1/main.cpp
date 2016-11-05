@@ -1,103 +1,21 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "main.h"
+#include "Rectangle.h"
 
 using namespace std;
 
-int CRectangle::CountArea()const
+struct RecParam
 {
-    return m_recWidth * m_recHeight;
-}
-
-int CRectangle::CountPerimetr()const
-{
-    return 2 * (m_recWidth + m_recHeight);
-}
-
-Point CRectangle::GetRightBottomPoint()const
-{
-    Point point;
-    point.x = m_leftX + m_recWidth;
-    point.y = m_topY + m_recHeight;
-    return point;
-}
-
-Point CRectangle::GetLeftTopPoint()const
-{
-    Point point;
-    point.x = m_leftX;
-    point.y = m_topY;
-    return point;
-}
-
-void CRectangle::Move(int dx, int dy)
-{
-    m_leftX += dx;
-    m_topY += dy;
-}
-
-void CRectangle::Scale(int sx, int sy)
-{
-    m_recWidth *= sx;
-    m_recHeight *= sy;
-}
-
-bool CRectangle::Intersect(CRectangle const& other)
-{
-    Point LeftTopPointOfSecondRec = other.GetLeftTopPoint();
-    Point RightBottomPointOfSecondRec = other.GetRightBottomPoint();
-    if (m_leftX < RightBottomPointOfSecondRec.x && GetRightBottomPoint().x > LeftTopPointOfSecondRec.x && m_topY < RightBottomPointOfSecondRec.y && GetRightBottomPoint().y > LeftTopPointOfSecondRec.y)
-    {
-        return true;
-    }
-    else
-    {
-        m_recWidth = m_recHeight = 0;
-        return false;
-    }
-}
-
-CRectangle::Size CRectangle::GetSize()const
-{
-    CRectangle::Size size;
-    size.width = m_recWidth;
-    size.height = m_recHeight;
-    return size;
-}
-
-void CRectangle::SetRectangleParametrs(RecParam const& recParam)
-{
-    m_leftX = recParam.leftX;
-    m_topY = recParam.topY;
-    m_recWidth = recParam.width;
-    m_recHeight = recParam.height;
-}
-
-RecParam CRectangle::GetParametrs()
-{
-    RecParam recParam;
-    recParam.leftX = m_leftX;
-    recParam.topY = m_topY;
-    recParam.width = m_recWidth;
-    recParam.height = m_recHeight;
-    return recParam;
-}
-
-
-
+    int leftX;
+    int topY;
+    int width;
+    int height;
+};
 
 void RemoveSpaces(string & strWithBlanks)
 {
     strWithBlanks.erase(remove(strWithBlanks.begin(), strWithBlanks.end(), ' '), strWithBlanks.end());
-}
-
-CRectangle CreateIntersectRectangle(RecParam & recParam)
-{
-    CRectangle rectangle;
-    rectangle.SetRectangleParametrs(recParam);
-    rectangle.CountArea();
-    return rectangle;
 }
 
 RecParam GetIntersectRecParam(CRectangle const& rectangle1, CRectangle const& rectangle2)
@@ -127,8 +45,8 @@ void PrintRectangleParam(CRectangle const& rectangle, string const& title)
     cout << "\t Size: " << size.width << '*' << size.height << endl;
     Point point1 = rectangle.GetRightBottomPoint();
     cout << "\t Right bottom: (" << point1.x << "; " << point1.y << ")" << endl;
-    cout << "\t Area: " << rectangle.CountArea() << endl;
-    cout << "\t Perimetr: " << rectangle.CountPerimetr() << endl;
+    cout << "\t Area: " << rectangle.CalculateArea() << endl;
+    cout << "\t Perimetr: " << rectangle.CalculatePerimeter() << endl;
 }
 
 Point GetMoveOrScaleParam(ifstream & commandsFile)
@@ -144,7 +62,8 @@ Point GetMoveOrScaleParam(ifstream & commandsFile)
 
 RecParam GetRecParam(ifstream & commandsFile)
 {
-    string leftX, topY, width, height;
+    string leftX, topY, width, height, command;
+    getline(commandsFile, command, ':');
     getline(commandsFile, leftX, ',');
     getline(commandsFile, topY, ',');
     getline(commandsFile, width, ',');
@@ -162,25 +81,11 @@ RecParam GetRecParam(ifstream & commandsFile)
     return recParam;
 }
 
-CRectangle CreateRectangle(ifstream & commandsFile)
-{
-    CRectangle rectangle;
-    RecParam recParam = GetRecParam(commandsFile);
-    rectangle.SetRectangleParametrs(recParam);
-    rectangle.CountArea();
-    return rectangle;
-}
-
 void ReadCommands(ifstream & commandsFile, CRectangle & rectangle)
 {
     string command;
     while(getline(commandsFile, command, ':'))
     {
-        if (command == "Rectangle")
-        {
-            rectangle = CreateRectangle(commandsFile);
-        }
-        
         if (command == "Move")
         {
             Point coordinates = GetMoveOrScaleParam(commandsFile);
@@ -192,11 +97,6 @@ void ReadCommands(ifstream & commandsFile, CRectangle & rectangle)
             Point coordinates = GetMoveOrScaleParam(commandsFile);
             rectangle.Scale(coordinates.x, coordinates.y);
         }
-        
-        if (command == "Intersect")
-        {
-            rectangle.Intersect(rectangle);
-        }
     }
 }
 
@@ -204,6 +104,7 @@ int main(int argc, const char * argv[])
 {
     ifstream firstRecFile(argv[1]);
     ifstream secondRecFile(argv[2]);
+    RecParam recParam;
     
     if(!firstRecFile.is_open() || !secondRecFile.is_open())
     {
@@ -212,22 +113,23 @@ int main(int argc, const char * argv[])
     }
     else
     {
-        CRectangle rectangle1;
+        recParam = GetRecParam(firstRecFile);
+        CRectangle rectangle1(recParam.leftX, recParam.topY, recParam.width, recParam.height);
         ReadCommands(firstRecFile, rectangle1);
         
-        CRectangle rectangle2;
+        recParam = GetRecParam(secondRecFile);
+        CRectangle rectangle2(recParam.leftX, recParam.topY, recParam.width, recParam.height);
         ReadCommands(secondRecFile, rectangle2);
-        
-        CRectangle intersectRectangle;
-        if(rectangle1.Intersect(rectangle2))
-        {
-            RecParam recParam = GetIntersectRecParam(rectangle1, rectangle2);
-            intersectRectangle = CreateIntersectRectangle(recParam);
-        }
         
         PrintRectangleParam(rectangle1, "Rectangle 1:");
         PrintRectangleParam(rectangle2, "Rectangle 2:");
-        PrintRectangleParam(intersectRectangle, "Intersection rectangle:");
+        
+        if(rectangle1.Intersect(rectangle2))
+        {
+            RecParam recParam = GetIntersectRecParam(rectangle1, rectangle2);
+            CRectangle intersectRectangle(recParam.leftX, recParam.topY, recParam.width, recParam.height);
+            PrintRectangleParam(intersectRectangle, "Intersection rectangle:");
+        }
     }
     return 0;
 }
