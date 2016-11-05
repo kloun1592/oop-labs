@@ -42,6 +42,10 @@ void CRectangle::Move(int dx, int dy)
 
 void CRectangle::Scale(int sx, int sy)
 {
+    if (sx < 0 || sy < 0)
+    {
+        sx = sy = 0;
+    }
     m_width *= sx;
     m_height *= sy;
 }

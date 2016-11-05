@@ -78,6 +78,10 @@ RecParam GetRecParam(ifstream & commandsFile)
     recParam.topY = stoi(topY);
     recParam.width = stoi(width);
     recParam.height = stoi(height);
+    if (recParam.width < 0 || recParam.height < 0)
+    {
+        recParam.width = recParam.height = 0;
+    }
     return recParam;
 }
 
