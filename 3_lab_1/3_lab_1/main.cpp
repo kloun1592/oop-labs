@@ -26,8 +26,8 @@ RecParam GetIntersectRecParam(CRectangle const& rectangle1, CRectangle const& re
     Point leftTopPoint2 = rectangle2.GetLeftTopPoint();
     Point rightBottomPoint2 = rectangle2.GetRightBottomPoint();
     
-    int interRightX = max(rightBottomPoint1.x, rightBottomPoint2.x);
-    int interBottomY = max(rightBottomPoint1.y, rightBottomPoint2.y);
+    int interRightX = min(rightBottomPoint1.x, rightBottomPoint2.x);
+    int interBottomY = min(rightBottomPoint1.y, rightBottomPoint2.y);
     RecParam recParam;
     recParam.leftX = max(leftTopPoint1.x, leftTopPoint2.x);
     recParam.topY = max(leftTopPoint1.y, leftTopPoint2.y);
@@ -41,7 +41,7 @@ void PrintRectangleParam(CRectangle const& rectangle, string const& title)
     cout << title << endl;
     Point point = rectangle.GetLeftTopPoint();
     cout << "\t Left Top: (" << point.x << "; " << point.y << ")" << endl;
-    CRectangle::Size size = rectangle.GetSize();
+    Size size = rectangle.GetSize();
     cout << "\t Size: " << size.width << '*' << size.height << endl;
     Point point1 = rectangle.GetRightBottomPoint();
     cout << "\t Right bottom: (" << point1.x << "; " << point1.y << ")" << endl;

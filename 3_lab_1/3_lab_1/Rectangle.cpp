@@ -61,9 +61,9 @@ bool CRectangle::Intersect(CRectangle const& other)
     }
 }
 
-CRectangle::Size CRectangle::GetSize()const
+Size CRectangle::GetSize()const
 {
-    CRectangle::Size size;
+    Size size;
     size.width = m_width;
     size.height = m_height;
     return size;

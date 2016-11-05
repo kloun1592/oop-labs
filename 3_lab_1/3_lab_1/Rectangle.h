@@ -4,14 +4,15 @@ struct Point
     int y;
 };
 
+struct Size
+{
+    int width;
+    int height;
+};
+
 class CRectangle
 {
 public:
-    struct Size
-    {
-        int width;
-        int height;
-    };
     CRectangle(int leftX, int topY, int width, int height);
     void Move(int dx, int dy);
     void Scale(int sx, int sy);

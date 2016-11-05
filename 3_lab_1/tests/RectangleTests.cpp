@@ -11,7 +11,7 @@ struct Rectanglefixture
     int height = 11;
 };
 
-void ExpectRectangle(int const& leftX, int const& topY, int const& width, int const& height)
+void ExpectRectangle(int leftX, int topY, int width, int height)
 {
     CRectangle rectangle(leftX, topY, width, height);
     BOOST_CHECK_EQUAL(rectangle.GetLeftTopPoint().x, leftX);
@@ -29,12 +29,12 @@ void ExpectRectangle(int const& leftX, int const& topY, int const& width, int co
 
 BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectanglefixture)
 
-    BOOST_AUTO_TEST_CASE(expect_correct_param)
+    BOOST_AUTO_TEST_CASE(after_creating_has_parametrs_which_were_send_in_constructor)
     {
         ExpectRectangle(leftX, topY, width, height);
     }
 
-    BOOST_AUTO_TEST_CASE(correctly_moved)
+    BOOST_AUTO_TEST_CASE(after_moving_change_his_coordinates_and_do_not_change_sizes)
     {
         CRectangle rectangle(leftX, topY, width, height);
         rectangle.Move(1, 1);
@@ -42,7 +42,7 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectanglefixture)
         BOOST_CHECK_EQUAL(rectangle.GetLeftTopPoint().y, topY + 1);
     }
 
-    BOOST_AUTO_TEST_CASE(correctly_scaled)
+    BOOST_AUTO_TEST_CASE(after_scaling_change_his_sizes_and_do_not_change_left_top_point_coordinates)
     {
         CRectangle rectangle(leftX, topY, width, height);
         rectangle.Scale(2, 2);
@@ -51,16 +51,16 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectanglefixture)
     }
 }
 
-BOOST_FIXTURE_TEST_SUITE(Two_Rectangles, Rectanglefixture)
+BOOST_FIXTURE_TEST_SUITE(Rectangle_after_intersection_with_other_rectangls, Rectanglefixture)
 
-    BOOST_AUTO_TEST_CASE(intersect)
+    BOOST_AUTO_TEST_CASE(change_coordiantes_sizes_to_cover_their_total_area)
     {
         CRectangle rectangle1(leftX, topY, width, height);
         CRectangle rectangle2(leftX, topY, width, height);
         BOOST_CHECK_EQUAL(rectangle1.Intersect(rectangle2), true);
     }
 
-    BOOST_AUTO_TEST_CASE(do_not_intersect)
+    BOOST_AUTO_TEST_CASE(change_coordiantes_and_reset_sizes)
     {
         CRectangle rectangle1(leftX, topY, width, height);
         CRectangle rectangle2(leftX + 100, topY + 100, width, height);
