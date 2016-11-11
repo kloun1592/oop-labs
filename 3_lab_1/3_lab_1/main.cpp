@@ -28,11 +28,13 @@ RecParam GetIntersectRecParam(CRectangle const& rectangle1, CRectangle const& re
     
     int interRightX = min(rightBottomPoint1.x, rightBottomPoint2.x);
     int interBottomY = min(rightBottomPoint1.y, rightBottomPoint2.y);
+    
     RecParam recParam;
     recParam.leftX = max(leftTopPoint1.x, leftTopPoint2.x);
     recParam.topY = max(leftTopPoint1.y, leftTopPoint2.y);
     recParam.width = interRightX - recParam.leftX;
     recParam.height = interBottomY - recParam.topY;
+    
     return recParam;
 }
 
@@ -49,14 +51,16 @@ void PrintRectangleParam(CRectangle const& rectangle, string const& title)
     cout << "\t Perimetr: " << rectangle.CalculatePerimeter() << endl;
 }
 
-Point GetMoveOrScaleParam(ifstream & commandsFile)
+Point GetCommandParameters(ifstream & commandsFile)
 {
     string dX, dY;
     getline(commandsFile, dX, ',');
     getline(commandsFile, dY, '\n');
+    
     Point coordiantes;
     coordiantes.x = stoi(dX);
     coordiantes.y = stoi(dY);
+    
     return coordiantes;
 }
 
@@ -68,6 +72,7 @@ RecParam GetRecParam(ifstream & commandsFile)
     getline(commandsFile, topY, ',');
     getline(commandsFile, width, ',');
     getline(commandsFile, height, '\n');
+    
     RemoveSpaces(leftX);
     RemoveSpaces(topY);
     RemoveSpaces(width);
@@ -78,10 +83,12 @@ RecParam GetRecParam(ifstream & commandsFile)
     recParam.topY = stoi(topY);
     recParam.width = stoi(width);
     recParam.height = stoi(height);
+    
     if (recParam.width < 0 || recParam.height < 0)
     {
         recParam.width = recParam.height = 0;
     }
+    
     return recParam;
 }
 
@@ -92,13 +99,13 @@ void ReadCommands(ifstream & commandsFile, CRectangle & rectangle)
     {
         if (command == "Move")
         {
-            Point coordinates = GetMoveOrScaleParam(commandsFile);
+            Point coordinates = GetCommandParameters(commandsFile);
             rectangle.Move(coordinates.x, coordinates.y);
         }
         
         if (command == "Scale")
         {
-            Point coordinates = GetMoveOrScaleParam(commandsFile);
+            Point coordinates = GetCommandParameters(commandsFile);
             rectangle.Scale(coordinates.x, coordinates.y);
         }
     }
@@ -109,6 +116,13 @@ int main(int argc, const char * argv[])
     ifstream firstRecFile(argv[1]);
     ifstream secondRecFile(argv[2]);
     RecParam recParam;
+    
+    if (argc != 3)
+    {
+        cout << "Invalid arguments count" << endl
+        << "Usage: copyfile.exe <input file> <output file>" << endl;
+        return 1;
+    }
     
     if(!firstRecFile.is_open() || !secondRecFile.is_open())
     {

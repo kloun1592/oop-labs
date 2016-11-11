@@ -28,10 +28,7 @@ Point CRectangle::GetRightBottomPoint()const
 
 Point CRectangle::GetLeftTopPoint()const
 {
-    Point point;
-    point.x = m_leftX;
-    point.y = m_topY;
-    return point;
+    return { m_leftX, m_topY };
 }
 
 void CRectangle::Move(int dx, int dy)
@@ -52,9 +49,15 @@ void CRectangle::Scale(int sx, int sy)
 
 bool CRectangle::Intersect(CRectangle const& other)
 {
-    Point LeftTopPointOfSecondRec = other.GetLeftTopPoint();
-    Point RightBottomPointOfSecondRec = other.GetRightBottomPoint();
-    if (m_leftX < RightBottomPointOfSecondRec.x && GetRightBottomPoint().x > LeftTopPointOfSecondRec.x && m_topY < RightBottomPointOfSecondRec.y && GetRightBottomPoint().y > LeftTopPointOfSecondRec.y)
+    int SecRec_leftX = other.GetLeftTopPoint().x;
+    int SecRec_topY = other.GetLeftTopPoint().y;
+    int SecRec_rightX = other.GetRightBottomPoint().x;
+    int SecRec_bottomY = other.GetRightBottomPoint().y;
+
+    if (m_leftX < SecRec_rightX &&
+        GetRightBottomPoint().x > SecRec_leftX &&
+        m_topY < SecRec_bottomY &&
+        GetRightBottomPoint().y > SecRec_topY)
     {
         return true;
     }
@@ -63,12 +66,10 @@ bool CRectangle::Intersect(CRectangle const& other)
         m_width = m_height = 0;
         return false;
     }
+    return false;
 }
 
 Size CRectangle::GetSize()const
 {
-    Size size;
-    size.width = m_width;
-    size.height = m_height;
-    return size;
+    return { m_width, m_height };
 }

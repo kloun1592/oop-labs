@@ -1,5 +1,5 @@
-#include <iostream>
 #define BOOST_TEST_DYN_LINK
+#include <iostream>
 #include <boost/test/unit_test.hpp>
 #include <boost/test/output/compiler_log_formatter.hpp>
 #include <boost/algorithm/string.hpp>

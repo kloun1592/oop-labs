@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		874045321DD6324900C5A312 /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 874045301DD6324900C5A312 /* Canvas.cpp */; };
 		DD5214631DCCE79C00753DDA /* tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF31DC46C860094FEE8 /* tests.cpp */; };
 		DD5214641DCCE79F00753DDA /* RectangleTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF11DC46C860094FEE8 /* RectangleTests.cpp */; };
 		DDB5A0261DC3B54B00205173 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB5A0251DC3B54B00205173 /* main.cpp */; };
@@ -35,6 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		874045301DD6324900C5A312 /* Canvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Canvas.cpp; sourceTree = "<group>"; };
+		874045311DD6324900C5A312 /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		DD222DF11DC46C860094FEE8 /* RectangleTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectangleTests.cpp; sourceTree = "<group>"; wrapsLines = 1; };
 		DD222DF31DC46C860094FEE8 /* tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tests.cpp; sourceTree = "<group>"; };
 		DD52145C1DCCE79500753DDA /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +98,8 @@
 				DDB5A0251DC3B54B00205173 /* main.cpp */,
 				DDB5A02C1DC3B57F00205173 /* Rectangle.h */,
 				DDDB893E1DCDAC5E005E9CED /* Rectangle.cpp */,
+				874045311DD6324900C5A312 /* Canvas.h */,
+				874045301DD6324900C5A312 /* Canvas.cpp */,
 			);
 			path = 3_lab_1;
 			sourceTree = "<group>";
@@ -142,7 +147,7 @@
 		DDB5A01A1DC3B54B00205173 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Михаил Романов";
 				TargetAttributes = {
 					DD52145B1DCCE79500753DDA = {
@@ -191,6 +196,7 @@
 			files = (
 				DDB5A0261DC3B54B00205173 /* main.cpp in Sources */,
 				DDDB893F1DCDAC5E005E9CED /* Rectangle.cpp in Sources */,
+				874045321DD6324900C5A312 /* Canvas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +207,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = M3CQ36DHT5;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.62.0/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.62.0/lib;
 				OTHER_LDFLAGS = "-lboost_unit_test_framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -212,8 +218,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = M3CQ36DHT5;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.62.0/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.62.0/lib;
 				OTHER_LDFLAGS = "-lboost_unit_test_framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -237,6 +243,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -284,6 +291,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
