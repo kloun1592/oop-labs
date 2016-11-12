@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		874045321DD6324900C5A312 /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 874045301DD6324900C5A312 /* Canvas.cpp */; };
+		877F83151DD6F26D00F9F544 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDB893E1DCDAC5E005E9CED /* Rectangle.cpp */; };
 		DD5214631DCCE79C00753DDA /* tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF31DC46C860094FEE8 /* tests.cpp */; };
 		DD5214641DCCE79F00753DDA /* RectangleTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD222DF11DC46C860094FEE8 /* RectangleTests.cpp */; };
 		DDB5A0261DC3B54B00205173 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB5A0251DC3B54B00205173 /* main.cpp */; };
@@ -185,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				877F83151DD6F26D00F9F544 /* Rectangle.cpp in Sources */,
 				DD5214641DCCE79F00753DDA /* RectangleTests.cpp in Sources */,
 				DD5214631DCCE79C00753DDA /* tests.cpp in Sources */,
 			);

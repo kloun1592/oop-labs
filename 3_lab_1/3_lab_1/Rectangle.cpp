@@ -46,15 +46,15 @@ void CRectangle::Scale(int sx, int sy)
 
 bool CRectangle::Intersect(CRectangle const& other)
 {
-    int SecRec_leftX = other.GetLeftTopPoint().x;
-    int SecRec_topY = other.GetLeftTopPoint().y;
-    int SecRec_rightX = other.GetRightBottomPoint().x;
-    int SecRec_bottomY = other.GetRightBottomPoint().y;
+    int otherRec_leftX = other.GetLeftTopPoint().x;
+    int otherRec_topY = other.GetLeftTopPoint().y;
+    int otherRec_rightX = other.GetRightBottomPoint().x;
+    int otherRec_bottomY = other.GetRightBottomPoint().y;
 
-    if (m_leftX < SecRec_rightX &&
-        GetRightBottomPoint().x > SecRec_leftX &&
-        m_topY < SecRec_bottomY &&
-        GetRightBottomPoint().y > SecRec_topY)
+    if (m_leftX < otherRec_rightX &&
+        GetRightBottomPoint().x > otherRec_leftX &&
+        m_topY < otherRec_bottomY &&
+        GetRightBottomPoint().y > otherRec_topY)
     {
         return true;
     }

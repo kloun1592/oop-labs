@@ -51,7 +51,7 @@ void PrintRectangleParam(CRectangle const& rectangle, string const& title)
     cout << "\t Perimetr: " << rectangle.CalculatePerimeter() << endl;
 }
 
-Point GetCommandParameters(ifstream & commandsFile)
+Point ReadPointParameters(ifstream & commandsFile)
 {
     string dX, dY;
     getline(commandsFile, dX, ',');
@@ -99,13 +99,13 @@ void ReadCommands(ifstream & commandsFile, CRectangle & rectangle)
     {
         if (command == "Move")
         {
-            Point coordinates = GetCommandParameters(commandsFile);
+            Point coordinates = ReadPointParameters(commandsFile);
             rectangle.Move(coordinates.x, coordinates.y);
         }
         
         if (command == "Scale")
         {
-            Point coordinates = GetCommandParameters(commandsFile);
+            Point coordinates = ReadPointParameters(commandsFile);
             rectangle.Scale(coordinates.x, coordinates.y);
         }
     }

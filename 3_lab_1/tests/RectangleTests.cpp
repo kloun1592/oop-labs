@@ -1,7 +1,7 @@
 #define BOOST_TEST_NO_MAIN
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
-#include "../3_lab_1/Rectangle.cpp"
+#include "../3_lab_1/Rectangle.h"
 
 struct Rectanglefixture
 {
@@ -34,7 +34,7 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectanglefixture)
         ExpectRectangle(leftX, topY, width, height);
     }
 
-    BOOST_AUTO_TEST_CASE(after_moving_change_his_coordinates_and_do_not_change_sizes)
+    BOOST_AUTO_TEST_CASE(after_moving_change_its_coordinates_and_do_not_change_sizes)
     {
         CRectangle rectangle(leftX, topY, width, height);
         rectangle.Move(1, 1);
@@ -42,7 +42,7 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, Rectanglefixture)
         BOOST_CHECK_EQUAL(rectangle.GetLeftTopPoint().y, topY + 1);
     }
 
-    BOOST_AUTO_TEST_CASE(after_scaling_change_his_sizes_and_do_not_change_left_top_point_coordinates)
+    BOOST_AUTO_TEST_CASE(after_scaling_change_its_sizes_and_do_not_change_left_top_point_coordinates)
     {
         CRectangle rectangle(leftX, topY, width, height);
         rectangle.Scale(2, 2);
