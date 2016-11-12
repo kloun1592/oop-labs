@@ -1,4 +1,7 @@
 #include "Rectangle.h"
+#include <iostream>
+
+using namespace std;
 
 CRectangle::CRectangle(int leftX, int topY, int width, int height)
     : m_leftX(leftX)
@@ -63,6 +66,23 @@ bool CRectangle::Intersect(CRectangle const& other)
         m_width = m_height = 0;
         return false;
     }
+}
+
+RecParam CRectangle::GetIntersectRecParam(CRectangle const& rectangle2)
+{
+    Point leftTopPoint2 = rectangle2.GetLeftTopPoint();
+    Point rightBottomPoint2 = rectangle2.GetRightBottomPoint();
+    
+    int interRightX = min(GetRightBottomPoint().x, rightBottomPoint2.x);
+    int interBottomY = min(GetRightBottomPoint().y, rightBottomPoint2.y);
+    
+    RecParam recParam;
+    recParam.leftX = max(m_leftX, leftTopPoint2.x);
+    recParam.topY = max(m_topY, leftTopPoint2.y);
+    recParam.width = interRightX - recParam.leftX;
+    recParam.height = interBottomY - recParam.topY;
+    
+    return recParam;
 }
 
 Size CRectangle::GetSize()const

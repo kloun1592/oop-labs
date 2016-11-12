@@ -1,4 +1,3 @@
-#pragma once
 struct Point
 {
     int x;
@@ -11,6 +10,14 @@ struct Size
     int height;
 };
 
+struct RecParam
+{
+    int leftX;
+    int topY;
+    int width;
+    int height;
+};
+
 class CRectangle
 {
 public:
@@ -18,6 +25,7 @@ public:
     void Move(int dx, int dy);
     void Scale(int sx, int sy);
     bool Intersect(CRectangle const& other);
+    RecParam GetIntersectRecParam(CRectangle const& rectangle2);
     int CalculateArea()const;
     int CalculatePerimeter()const;
     Point GetLeftTopPoint()const;

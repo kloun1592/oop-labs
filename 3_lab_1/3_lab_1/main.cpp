@@ -5,37 +5,9 @@
 
 using namespace std;
 
-struct RecParam
-{
-    int leftX;
-    int topY;
-    int width;
-    int height;
-};
-
 void RemoveSpaces(string & strWithBlanks)
 {
     strWithBlanks.erase(remove(strWithBlanks.begin(), strWithBlanks.end(), ' '), strWithBlanks.end());
-}
-
-RecParam GetIntersectRecParam(CRectangle const& rectangle1, CRectangle const& rectangle2)
-{
-    Point leftTopPoint1 = rectangle1.GetLeftTopPoint();
-    Point rightBottomPoint1 = rectangle1.GetRightBottomPoint();
-    
-    Point leftTopPoint2 = rectangle2.GetLeftTopPoint();
-    Point rightBottomPoint2 = rectangle2.GetRightBottomPoint();
-    
-    int interRightX = min(rightBottomPoint1.x, rightBottomPoint2.x);
-    int interBottomY = min(rightBottomPoint1.y, rightBottomPoint2.y);
-    
-    RecParam recParam;
-    recParam.leftX = max(leftTopPoint1.x, leftTopPoint2.x);
-    recParam.topY = max(leftTopPoint1.y, leftTopPoint2.y);
-    recParam.width = interRightX - recParam.leftX;
-    recParam.height = interBottomY - recParam.topY;
-    
-    return recParam;
 }
 
 void PrintRectangleParam(CRectangle const& rectangle, string const& title)
@@ -144,7 +116,7 @@ int main(int argc, const char * argv[])
         
         if(rectangle1.Intersect(rectangle2))
         {
-            RecParam recParam = GetIntersectRecParam(rectangle1, rectangle2);
+            RecParam recParam = rectangle1.GetIntersectRecParam(rectangle2);
             CRectangle intersectRectangle(recParam.leftX, recParam.topY, recParam.width, recParam.height);
             PrintRectangleParam(intersectRectangle, "Intersection rectangle:");
         }
