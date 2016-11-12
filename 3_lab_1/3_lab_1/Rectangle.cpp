@@ -11,19 +11,16 @@ CRectangle::CRectangle(int leftX, int topY, int width, int height)
 int CRectangle::CalculateArea()const
 {
     return m_width * m_height;
-};
+}
 
 int CRectangle::CalculatePerimeter()const
 {
     return 2 * (m_width + m_height);
-};
+}
 
 Point CRectangle::GetRightBottomPoint()const
 {
-    Point point;
-    point.x = m_leftX + m_width;
-    point.y = m_topY + m_height;
-    return point;
+    return { m_leftX + m_width, m_topY + m_height };
 }
 
 Point CRectangle::GetLeftTopPoint()const
@@ -66,7 +63,6 @@ bool CRectangle::Intersect(CRectangle const& other)
         m_width = m_height = 0;
         return false;
     }
-    return false;
 }
 
 Size CRectangle::GetSize()const
