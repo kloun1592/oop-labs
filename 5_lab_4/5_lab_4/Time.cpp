@@ -34,46 +34,96 @@ bool CTime::IsValid()const
 	return m_isTimeValid;
 }
 
-
-CTime operator ++ (CTime &other)
+const CTime CTime::operator ++ ()
 {
-	unsigned time = other.GetTimeStamp();
-	time++;
-	CTime newTime(time);
-	return newTime;
+	m_time++;
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return *this;
 }
 
-CTime operator -- (CTime &other)
+const CTime CTime::operator ++ (int)
 {
-	unsigned time = other.GetTimeStamp();
-	time--;
-	CTime newTime(time);
-	return newTime;
+	CTime temp = *this;
+	++*this;
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return temp;
+}
+
+const CTime CTime::operator -- ()
+{
+	m_time--;
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return *this;
+}
+
+const CTime CTime::operator -- (int)
+{
+	CTime temp = *this;
+	++*this;
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return temp;
 }
 
 const CTime CTime::operator + (const CTime time)
 {
-	return m_time + time.GetTimeStamp();
+	m_time = m_time + time.GetTimeStamp();
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return m_time;
 }
 
 const CTime CTime::operator - (const CTime time)
 {
-	return m_time - time.GetTimeStamp();
+	m_time = m_time - time.GetTimeStamp();
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return m_time;
 }
 
 const CTime CTime::operator += (const CTime time)
 {
-	return m_time + time.GetTimeStamp();
+	m_time = m_time + time.GetTimeStamp();
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return m_time;
 }
 
 const CTime CTime::operator -= (const CTime time)
 {
-	return m_time - time.GetTimeStamp();
+	m_time = m_time - time.GetTimeStamp();
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return m_time;
 }
 
 const CTime CTime::operator * (unsigned multiplier)
 {
-	return m_time *= multiplier;
+	m_time *= multiplier;
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return m_time;
 }
 
 const CTime CTime::operator / (unsigned divider)
@@ -83,7 +133,12 @@ const CTime CTime::operator / (unsigned divider)
 
 const CTime CTime::operator *= (unsigned multiplier)
 {
-	return m_time *= multiplier;
+	m_time *= multiplier;
+	if (m_time / 3600 >= 24)
+	{
+		m_time = 0;
+	}
+	return m_time;
 }
 
 const CTime CTime::operator /= (unsigned divider)

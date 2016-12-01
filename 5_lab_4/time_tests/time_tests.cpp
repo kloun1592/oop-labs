@@ -42,6 +42,32 @@ BOOST_AUTO_TEST_SUITE(Time)
 		BOOST_CHECK(time.IsValid(), false);
 	}
 
+	BOOST_AUTO_TEST_CASE(increase_by_1_second)
+	{
+		unsigned hours = 13;
+		unsigned minutes = 10;
+		unsigned seconds = 11;
+		CTime time(hours, minutes, seconds);
+		unsigned currTime = time.GetTimeStamp();
+		++time;
+		BOOST_CHECK(time.GetTimeStamp(), currTime + 1);
+		time++;
+		BOOST_CHECK(time.GetTimeStamp(), currTime + 2);
+	}
+
+	BOOST_AUTO_TEST_CASE(decrease_by_1_second)
+	{
+		unsigned hours = 13;
+		unsigned minutes = 10;
+		unsigned seconds = 11;
+		CTime time(hours, minutes, seconds);
+		unsigned currTime = time.GetTimeStamp();
+		--time;
+		BOOST_CHECK(time.GetTimeStamp(), currTime - 1);
+		time--;
+		BOOST_CHECK(time.GetTimeStamp(), currTime - 2);
+	}
+
 	BOOST_AUTO_TEST_CASE(increase_by_other_time_by_1_command)
 	{
 		unsigned hours = 13;

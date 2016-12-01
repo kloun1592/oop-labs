@@ -25,6 +25,11 @@ public:
 	//	метод time.IsValid() должен возвращать false
 	bool IsValid()const;
 
+	const CTime operator++();
+	const CTime operator++(int);
+	const CTime operator--();
+	const CTime operator--(int);
+
 	const CTime operator + (const CTime time);
 	const CTime operator - (const CTime time);
 	const CTime operator * (unsigned multiplier);
