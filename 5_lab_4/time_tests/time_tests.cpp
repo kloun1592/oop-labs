@@ -1,6 +1,12 @@
 #include "stdafx.h"
-
 #include "../5_lab_4/5_lab_4/Time.h"
+
+void VerifyOutput(const CTime & time, const std::string & expectedString)
+{
+	std::ostringstream output;
+	output << time;
+	BOOST_CHECK_EQUAL(output.str(), expectedString);
+}
 
 BOOST_AUTO_TEST_SUITE(Time)
 
@@ -217,7 +223,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		unsigned seconds = 11;
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(hours, minutes, seconds);
-		BOOST_CHECK(time == anotherTime, true);
+		BOOST_CHECK_EQUAL(time == anotherTime, true);
 		BOOST_CHECK_EQUAL(time != anotherTime, false);
 	}
 
@@ -228,9 +234,14 @@ BOOST_AUTO_TEST_SUITE(Time)
 		unsigned seconds = 11;
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(14, minutes, seconds);
-		//BOOST_CHECK(time == anotherTime, false);
-		//BOOST_CHECK_EQUAL(time != anotherTime, true);
+		BOOST_CHECK_EQUAL(time == anotherTime, false);
+		BOOST_CHECK_EQUAL(time != anotherTime, true);
 	}
 
+	BOOST_AUTO_TEST_CASE(correctly_printed_to_output)
+	{
+		CTime time(13, 10, 11);
+		VerifyOutput(time, "13:10:11");
+	}
 
 BOOST_AUTO_TEST_SUITE_END()
