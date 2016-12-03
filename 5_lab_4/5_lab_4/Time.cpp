@@ -168,7 +168,6 @@ std::ostream& operator << (std::ostream& stream, const CTime & time)
 		stream << "INVALID";
 		return stream;
 	}
-	return stream;
 };
 
 std::istream& operator >> (std::istream& stream, const CTime & time)
