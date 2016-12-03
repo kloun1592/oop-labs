@@ -2,18 +2,11 @@
 #include "Time.h"
 
 CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
-	//: m_time(
-{
-	if (hours > 24 || minutes > 60 || seconds > 60)
-	{
-		m_time = 0;
-		m_isTimeValid = false;
-	}
-	else
-	{
-		m_time = (hours * 60 + minutes) * 60 + seconds;
-	}
-}
+	: m_time(
+	         (hours > 24 || minutes > 60 || seconds > 60) ? 
+		         (0, m_isTimeValid = false) : 
+		         ((hours * 60 + minutes) * 60 + seconds))
+{}
 
 CTime::CTime(unsigned timeStamp)
 	: m_time(timeStamp)
@@ -74,7 +67,7 @@ const CTime CTime::operator -- ()
 const CTime CTime::operator -- (int)
 {
 	CTime temp = *this;
-	--*this;
+	++*this;
 	return temp;
 }
 
@@ -169,6 +162,7 @@ std::ostream& operator << (std::ostream& stream, const CTime & time)
 		stream << "INVALID";
 		return stream;
 	}
+	return stream;
 };
 
 std::istream& operator >> (std::istream& stream, const CTime & time)
