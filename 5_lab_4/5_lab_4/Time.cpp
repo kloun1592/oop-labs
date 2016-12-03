@@ -172,6 +172,7 @@ std::ostream& operator << (std::ostream& stream, const CTime & time)
 
 std::istream& operator >> (std::istream& stream, const CTime & time)
 {
+	(void)time;
     unsigned hours, minutes, seconds;
     stream >> hours >> minutes >> seconds;
     CTime time2(hours, minutes, seconds);
