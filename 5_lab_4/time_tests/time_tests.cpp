@@ -12,40 +12,13 @@ BOOST_AUTO_TEST_SUITE(Time)
 
 	BOOST_AUTO_TEST_CASE(has_correct_hours_minutes_seconds)
 	{
-	    unsigned hours = 6;
+		unsigned hours = 6;
 		unsigned minutes = 10;
 		unsigned seconds = 42;
 		CTime time(hours, minutes, seconds);
 		BOOST_CHECK_EQUAL(time.GetHours(), hours);
 		BOOST_CHECK_EQUAL(time.GetMinutes(), minutes);
 		BOOST_CHECK_EQUAL(time.GetSeconds(), seconds);
-	}
-
-    BOOST_AUTO_TEST_CASE(has_incorrect_hours)
-    {
-	    unsigned hours = 25;
-	    unsigned minutes = 10;
-	    unsigned seconds = 42;
-     	CTime time(hours, minutes, seconds);
-		BOOST_CHECK_EQUAL(time.IsValid(), false);
-    }
-
-	BOOST_AUTO_TEST_CASE(has_incorrect_minutes)
-	{
-		unsigned hours = 23;
-		unsigned minutes = 100;
-		unsigned seconds = 42;
-		CTime time(hours, minutes, seconds);
-		BOOST_CHECK_EQUAL(time.IsValid(), false);
-	}
-
-	BOOST_AUTO_TEST_CASE(has_incorrect_seconds)
-	{
-		unsigned hours = 13;
-		unsigned minutes = 10;
-		unsigned seconds = 365;
-		CTime time(hours, minutes, seconds);
-		BOOST_CHECK_EQUAL(time.IsValid(), false);
 	}
 
 	BOOST_AUTO_TEST_CASE(increase_by_1_second)
@@ -182,7 +155,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		unsigned minutes = 6;
 		unsigned seconds = 3;
 		CTime time(hours, minutes, seconds);
-		CTime anotherTime(13, 10, 11);
+		CTime anotherTime(5, 6, 4);
 		BOOST_CHECK_EQUAL(time < anotherTime, true);
 		BOOST_CHECK_EQUAL(anotherTime < time, false);
 	}
@@ -193,16 +166,16 @@ BOOST_AUTO_TEST_SUITE(Time)
 		unsigned minutes = 6;
 		unsigned seconds = 3;
 		CTime time(hours, minutes, seconds);
-		CTime anotherTime(13, 10, 11);
+		CTime anotherTime(5, 6, 4);
 		BOOST_CHECK_EQUAL(time <= anotherTime, true);
 		BOOST_CHECK_EQUAL(anotherTime <= time, false);
 	}
 
 	BOOST_AUTO_TEST_CASE(is_bigger_than_another_time)
 	{
-		unsigned hours = 13;
-		unsigned minutes = 10;
-		unsigned seconds = 11;
+		unsigned hours = 5;
+		unsigned minutes = 6;
+		unsigned seconds = 4;
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 3);
 		BOOST_CHECK_EQUAL(time > anotherTime, true);
@@ -211,9 +184,9 @@ BOOST_AUTO_TEST_SUITE(Time)
 
 	BOOST_AUTO_TEST_CASE(is_bigger_or_equal_than_another_time)
 	{
-		unsigned hours = 13;
-		unsigned minutes = 10;
-		unsigned seconds = 11;
+		unsigned hours = 5;
+		unsigned minutes = 6;
+		unsigned seconds = 4;
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 3);
 		BOOST_CHECK_EQUAL(time >= anotherTime, true);
@@ -247,5 +220,4 @@ BOOST_AUTO_TEST_SUITE(Time)
 		CTime time(13, 10, 11);
 		VerifyOutput(time, "13:10:11");
 	}
-
 BOOST_AUTO_TEST_SUITE_END()

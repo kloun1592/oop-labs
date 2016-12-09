@@ -58,4 +58,4 @@ private:
 
 CTime const operator * (unsigned multiplier, CTime const& time);
 std::ostream& operator << (std::ostream& stream, const CTime & time);
-std::istream& operator >> (std::istream& stream, const CTime & time);
+std::istream & operator >> (std::istream & stream, CTime & time);

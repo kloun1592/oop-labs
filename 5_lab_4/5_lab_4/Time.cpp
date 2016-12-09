@@ -3,15 +3,20 @@
 
 CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 {
-	if (hours > 24 || minutes > 60 || seconds > 60)
+	try
 	{
-		m_time = 0;
+		if (hours > 24 || minutes > 60 || seconds > 60)
+		{
+			throw std::invalid_argument("incorrectly specified time");
+		}
+	}
+	catch (std::invalid_argument const & errorMessage)
+	{
+		std::cout << "Error: " << errorMessage.what() << "\n";
 		m_isTimeValid = false;
 	}
-	else
-	{
-		m_time = (hours * 60 + minutes) * 60 + seconds;
-	}
+
+	m_time = (hours * 60 + minutes) * 60 + seconds;
 }
 
 CTime::CTime(unsigned timeStamp)
@@ -182,3 +187,23 @@ std::istream& operator >> (std::istream& stream, const CTime & time)
     }
     return stream;
 };
+
+std::istream & operator >> (std::istream & stream, CTime & time)
+{
+	unsigned hours, minutes, seconds;
+	if (
+		(stream >> hours) &&
+		(stream.get() == ':') &&
+		(stream >> minutes) &&
+		(stream.get() == ':') &&
+		(stream >> seconds)
+		)
+	{
+		time = CTime(hours, minutes, seconds);
+	}
+	else
+	{
+		stream.setstate(std::ios_base::failbit);
+	}
+	return stream;
+}
