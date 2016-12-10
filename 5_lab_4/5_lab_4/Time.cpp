@@ -3,25 +3,23 @@
 
 CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 {
-	try
+	if (hours > 24 || minutes > 60 || seconds > 60)
 	{
-		if (hours > 24 || minutes > 60 || seconds > 60)
-		{
-			throw std::invalid_argument("incorrectly specified time");
-		}
-	}
-	catch (std::invalid_argument const & errorMessage)
-	{
-		std::cout << "Error: " << errorMessage.what() << "\n";
-		m_isTimeValid = false;
+		throw std::invalid_argument("incorrectly specified time");
 	}
 
 	m_time = (hours * 60 + minutes) * 60 + seconds;
 }
 
 CTime::CTime(unsigned timeStamp)
-	: m_time(timeStamp)
-{}
+{
+	if (timeStamp > 86399) // 86399 - 23:59:59
+	{
+		throw std::invalid_argument("incorrectly specified time");
+	}
+
+    m_time = timeStamp;
+}
 
 unsigned CTime::GetHours()const
 {
@@ -41,11 +39,6 @@ unsigned CTime::GetSeconds()const
 unsigned CTime::GetTimeStamp()const
 {
 	return m_time;
-}
-
-bool CTime::IsValid()const
-{
-	return m_isTimeValid;
 }
 
 const CTime CTime::operator ++ ()
@@ -114,15 +107,20 @@ CTime const operator * (unsigned multiplier, CTime const& time)
 	return CTime(multiplier * time.GetTimeStamp());
 }
 
-CTime const CTime::operator / (unsigned multiplier)const
+CTime const CTime::operator / (unsigned divider)const
 {
-	return CTime(m_time / multiplier);
+	return CTime(m_time / divider);
 }
 
-CTime& CTime::operator *= (CTime const& time)
+CTime& CTime::operator *= (unsigned multiplier)
 {
-	m_time *= time.GetTimeStamp();
+	m_time *= multiplier;
 	return *this;
+}
+
+CTime const operator *= (unsigned multiplier, CTime const& time)
+{
+	return CTime(time.GetTimeStamp() * multiplier);
 }
 
 CTime& CTime::operator /= (CTime const& time)
@@ -163,29 +161,8 @@ bool CTime::operator <= (CTime const& time)const
 
 std::ostream& operator << (std::ostream& stream, const CTime & time)
 {
-	if (time.IsValid())
-	{
-		stream << time.GetHours() << ':' << time.GetMinutes() << ':' << time.GetSeconds();
-		return stream;
-	}
-	else
-	{
-		stream << "INVALID";
-		return stream;
-	}
-};
-
-std::istream& operator >> (std::istream& stream, const CTime & time)
-{
-	(void)time;
-    unsigned hours, minutes, seconds;
-    stream >> hours >> minutes >> seconds;
-    CTime time2(hours, minutes, seconds);
-    if (time2.IsValid())
-    {
-        return stream;
-    }
-    return stream;
+	stream << time.GetHours() << ':' << time.GetMinutes() << ':' << time.GetSeconds();
+	return stream;
 };
 
 std::istream & operator >> (std::istream & stream, CTime & time)

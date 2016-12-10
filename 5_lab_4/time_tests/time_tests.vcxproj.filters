@@ -32,7 +32,7 @@
     <ClCompile Include="time_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\5_lab_4\5_lab_4\Time.cpp">
+    <ClCompile Include="..\5_lab_4\Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

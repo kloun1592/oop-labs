@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../5_lab_4/5_lab_4/Time.h"
+#include "../5_lab_4/Time.h"
 
 void VerifyOutput(const CTime & time, const std::string & expectedString)
 {
@@ -21,6 +21,11 @@ BOOST_AUTO_TEST_SUITE(Time)
 		BOOST_CHECK_EQUAL(time.GetSeconds(), seconds);
 	}
 
+	BOOST_AUTO_TEST_CASE(has_incorrect_time)
+	{
+		BOOST_REQUIRE_THROW((CTime(42, 3, 55)), std::invalid_argument);
+	}
+
 	BOOST_AUTO_TEST_CASE(increase_by_1_second)
 	{
 		unsigned hours = 13;
@@ -32,6 +37,9 @@ BOOST_AUTO_TEST_SUITE(Time)
 		BOOST_CHECK_EQUAL(time.GetTimeStamp(), currTime + 1);
 		time++;
 		BOOST_CHECK_EQUAL(time.GetTimeStamp(), currTime + 2);
+		CTime time2(23, 59, 59);
+		++time2;
+		BOOST_CHECK_EQUAL(time.GetTimeStamp(), 0);
 	}
 
 	BOOST_AUTO_TEST_CASE(decrease_by_1_second)
@@ -157,6 +165,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 4);
 		BOOST_CHECK_EQUAL(time < anotherTime, true);
+		BOOST_CHECK_EQUAL(time < time, false);
 		BOOST_CHECK_EQUAL(anotherTime < time, false);
 	}
 
@@ -168,6 +177,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 4);
 		BOOST_CHECK_EQUAL(time <= anotherTime, true);
+		BOOST_CHECK_EQUAL(time = time, true);
 		BOOST_CHECK_EQUAL(anotherTime <= time, false);
 	}
 
@@ -179,6 +189,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 3);
 		BOOST_CHECK_EQUAL(time > anotherTime, true);
+		BOOST_CHECK_EQUAL(time > time, false);
 		BOOST_CHECK_EQUAL(anotherTime > time, false);
 	}
 
@@ -190,6 +201,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 3);
 		BOOST_CHECK_EQUAL(time >= anotherTime, true);
+		BOOST_CHECK_EQUAL(time = time, true);
 		BOOST_CHECK_EQUAL(anotherTime >= time, false);
 	}
 

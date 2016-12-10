@@ -20,11 +20,6 @@ public:
 
 	unsigned GetTimeStamp()const;
 
-	// возвращает информацию о корректности времени.
-	// Например, после вызова конструктора CTime time(99, 32, 83);
-	//	метод time.IsValid() должен возвращать false
-	bool IsValid()const;
-
 	const CTime operator++();
 	const CTime operator++(int);
 	const CTime operator--();
@@ -40,8 +35,8 @@ public:
 
 	CTime const operator*(unsigned multiplier) const;
 
-	CTime const operator/(unsigned multiplier) const;
-	CTime & operator*=(CTime const & time);
+	CTime const operator/(unsigned divider) const;
+    CTime & operator*=(unsigned multiplier);
 	CTime & operator/=(CTime const & time);
 
 	bool operator==(CTime const & time) const;
@@ -53,9 +48,9 @@ public:
 	bool operator<=(CTime const & time) const;
 private:
 	unsigned m_time;
-	bool m_isTimeValid = true;
 };
 
 CTime const operator * (unsigned multiplier, CTime const& time);
+CTime const operator *= (unsigned multiplier, CTime const& time);
 std::ostream& operator << (std::ostream& stream, const CTime & time);
 std::istream & operator >> (std::istream & stream, CTime & time);
