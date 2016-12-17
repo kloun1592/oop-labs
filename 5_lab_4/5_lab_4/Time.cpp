@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Time.h"
 
+const unsigned MAX_TIME = 86399; // 23:59:59
+
 CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 {
-	if (hours > 24 || minutes > 60 || seconds > 60)
+	if (hours >= 24 || minutes >= 60 || seconds >= 60)
 	{
 		throw std::invalid_argument("incorrectly specified time");
 	}
@@ -13,12 +15,12 @@ CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 
 CTime::CTime(unsigned timeStamp)
 {
-	if (timeStamp > 86399) // 86399 - 23:59:59
+	if (timeStamp > MAX_TIME)
 	{
-		throw std::invalid_argument("incorrectly specified time");
+		timeStamp = timeStamp % 60;
 	}
 
-    m_time = timeStamp;
+	m_time = timeStamp;
 }
 
 unsigned CTime::GetHours()const
@@ -44,9 +46,9 @@ unsigned CTime::GetTimeStamp()const
 const CTime CTime::operator ++ ()
 {
 	m_time++;
-	if (m_time / 3600 >= 24)
+	if (m_time > MAX_TIME)
 	{
-		m_time = 0;
+		m_time = m_time % 60;
 	}
 	return *this;
 }
@@ -61,10 +63,6 @@ const CTime CTime::operator ++ (int)
 const CTime CTime::operator -- ()
 {
 	m_time--;
-	if (m_time / 3600 >= 24)
-	{
-		m_time = 0;
-	}
 	return *this;
 }
 
@@ -77,7 +75,14 @@ const CTime CTime::operator -- (int)
 
 CTime const CTime::operator + (CTime const& time)const
 {
-	return CTime(m_time + time.GetTimeStamp());
+	if (m_time + time.GetTimeStamp() > 86399)
+	{
+		return CTime((m_time + time.GetTimeStamp()) % 60);
+	}
+	else
+	{
+		return CTime(m_time + time.GetTimeStamp());
+	}
 }
 
 CTime const CTime::operator - (CTime const& time)const
@@ -88,6 +93,10 @@ CTime const CTime::operator - (CTime const& time)const
 CTime& CTime::operator += (CTime const& time)
 {
 	m_time += time.GetTimeStamp();
+	if (m_time > 86399)
+	{
+		m_time = m_time % 60;
+	}
 	return *this;
 }
 
@@ -99,12 +108,26 @@ CTime& CTime::operator -= (CTime const& time)
 
 CTime const CTime::operator * (unsigned multiplier)const
 {
-	return CTime(m_time * multiplier);
+	if (m_time * multiplier > MAX_TIME)
+	{
+		return CTime((m_time * multiplier) % 60);
+	}
+	else
+	{
+		return CTime(m_time * multiplier);
+	}
 }
 
 CTime const operator * (unsigned multiplier, CTime const& time)
 {
-	return CTime(multiplier * time.GetTimeStamp());
+	if (multiplier * time.GetTimeStamp() > MAX_TIME)
+	{
+		return CTime((multiplier * time.GetTimeStamp()) % 60);
+	}
+	else
+	{
+		return CTime(multiplier * time.GetTimeStamp());
+	}
 }
 
 CTime const CTime::operator / (unsigned divider)const
@@ -115,12 +138,23 @@ CTime const CTime::operator / (unsigned divider)const
 CTime& CTime::operator *= (unsigned multiplier)
 {
 	m_time *= multiplier;
+	if (m_time > MAX_TIME)
+	{
+		m_time = m_time % 60;
+	}
 	return *this;
 }
 
 CTime const operator *= (unsigned multiplier, CTime const& time)
 {
-	return CTime(time.GetTimeStamp() * multiplier);
+	if (time.GetTimeStamp() * multiplier > MAX_TIME)
+	{
+		return CTime((time.GetTimeStamp() * multiplier) % 60);
+	}
+	else
+	{
+		return CTime(time.GetTimeStamp() * multiplier);
+	}
 }
 
 CTime& CTime::operator /= (CTime const& time)
@@ -177,10 +211,6 @@ std::istream & operator >> (std::istream & stream, CTime & time)
 		)
 	{
 		time = CTime(hours, minutes, seconds);
-	}
-	else
-	{
-		stream.setstate(std::ios_base::failbit);
 	}
 	return stream;
 }

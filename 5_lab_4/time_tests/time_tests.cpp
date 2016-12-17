@@ -8,6 +8,21 @@ void VerifyOutput(const CTime & time, const std::string & expectedString)
 	BOOST_CHECK_EQUAL(output.str(), expectedString);
 }
 
+void VerifyInputOperator(const std::string & str)
+{
+	std::istringstream input(str);
+	CTime time2(0);
+	input >> time2;
+
+	std::string hours = std::to_string(time2.GetHours());
+	std::string minutes = std::to_string(time2.GetMinutes());
+	std::string seconds = std::to_string(time2.GetSeconds());
+
+	std::string stringTime = hours + ":" + minutes + ":" + seconds;
+
+	BOOST_CHECK_EQUAL(stringTime, str);
+}
+
 BOOST_AUTO_TEST_SUITE(Time)
 
 	BOOST_AUTO_TEST_CASE(has_correct_hours_minutes_seconds)
@@ -23,7 +38,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 
 	BOOST_AUTO_TEST_CASE(has_incorrect_time)
 	{
-		BOOST_REQUIRE_THROW((CTime(42, 3, 55)), std::invalid_argument);
+		BOOST_REQUIRE_THROW(CTime(24, 0, 0), std::invalid_argument);
 	}
 
 	BOOST_AUTO_TEST_CASE(increase_by_1_second)
@@ -39,7 +54,10 @@ BOOST_AUTO_TEST_SUITE(Time)
 		BOOST_CHECK_EQUAL(time.GetTimeStamp(), currTime + 2);
 		CTime time2(23, 59, 59);
 		++time2;
-		BOOST_CHECK_EQUAL(time.GetTimeStamp(), 0);
+		BOOST_CHECK_EQUAL(time2.GetTimeStamp(), 0);
+		CTime time3(23, 59, 59);
+		time3++;
+		BOOST_CHECK_EQUAL(time3.GetTimeStamp(), 0);
 	}
 
 	BOOST_AUTO_TEST_CASE(decrease_by_1_second)
@@ -93,6 +111,9 @@ BOOST_AUTO_TEST_SUITE(Time)
 		BOOST_CHECK_EQUAL(time.GetHours(), hours + 1);
 		BOOST_CHECK_EQUAL(time.GetMinutes(), minutes + 1);
 		BOOST_CHECK_EQUAL(time.GetSeconds(), seconds + 1);
+		CTime time2(23, 59, 59);
+		time2 += 2;
+		BOOST_CHECK_EQUAL(time2.GetTimeStamp(), 1);
 	}
 
 
@@ -140,9 +161,14 @@ BOOST_AUTO_TEST_SUITE(Time)
 		unsigned seconds = 3;
 		CTime time(hours, minutes, seconds);
 		time = time * 3;
+		CTime time2(hours, minutes, seconds);
+		time2 = 3 * time2;
 		BOOST_CHECK_EQUAL(time.GetHours(), hours * 3);
 		BOOST_CHECK_EQUAL(time.GetMinutes(), minutes * 3);
 		BOOST_CHECK_EQUAL(time.GetSeconds(), seconds * 3);
+		BOOST_CHECK_EQUAL(time2.GetHours(), hours * 3);
+		BOOST_CHECK_EQUAL(time2.GetMinutes(), minutes * 3);
+		BOOST_CHECK_EQUAL(time2.GetSeconds(), seconds * 3);
 	}
 
 	BOOST_AUTO_TEST_CASE(multiplied_by_a_multiplier_by_2_command)
@@ -177,7 +203,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 4);
 		BOOST_CHECK_EQUAL(time <= anotherTime, true);
-		BOOST_CHECK_EQUAL(time = time, true);
+		BOOST_CHECK_EQUAL(time == time, true);
 		BOOST_CHECK_EQUAL(anotherTime <= time, false);
 	}
 
@@ -201,7 +227,7 @@ BOOST_AUTO_TEST_SUITE(Time)
 		CTime time(hours, minutes, seconds);
 		CTime anotherTime(5, 6, 3);
 		BOOST_CHECK_EQUAL(time >= anotherTime, true);
-		BOOST_CHECK_EQUAL(time = time, true);
+		BOOST_CHECK_EQUAL(time == time, true);
 		BOOST_CHECK_EQUAL(anotherTime >= time, false);
 	}
 
@@ -227,9 +253,24 @@ BOOST_AUTO_TEST_SUITE(Time)
 		BOOST_CHECK_EQUAL(time != anotherTime, true);
 	}
 
+	BOOST_AUTO_TEST_CASE(should_correctly_wrap_on_addition)
+	{
+		CTime t1(23, 59, 55);
+		CTime t2(0, 0, 10);
+		CTime t3 = t1 + t2;
+		BOOST_CHECK_EQUAL(t3, CTime(0, 0, 5));
+		BOOST_CHECK_EQUAL(CTime(23, 59, 55) + CTime(0, 0, 10), CTime(0, 0, 5));
+	}
+
 	BOOST_AUTO_TEST_CASE(correctly_printed_to_output)
 	{
 		CTime time(13, 10, 11);
 		VerifyOutput(time, "13:10:11");
 	}
+
+	BOOST_AUTO_TEST_CASE(can_be_read_from_istream)
+	{
+		VerifyInputOperator("10:11:12");
+	}
+
 BOOST_AUTO_TEST_SUITE_END()

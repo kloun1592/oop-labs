@@ -36,7 +36,7 @@ public:
 	CTime const operator*(unsigned multiplier) const;
 
 	CTime const operator/(unsigned divider) const;
-    CTime & operator*=(unsigned multiplier);
+	CTime & operator*=(unsigned multiplier);
 	CTime & operator/=(CTime const & time);
 
 	bool operator==(CTime const & time) const;
