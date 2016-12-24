@@ -28,11 +28,16 @@ double sgn(double const& x)
 // ¬ычисл€ем корни квадратного уравнени€ ax^2 + bx + c = 0
 EquationRoots2 Solve2(double const& a, double const& b, double const& c)
 {
+	if (a == 0.0)
+	{
+		throw std::invalid_argument("first coefficient should be > 0");
+	}
+
 	EquationRoots2 x;
 	const double d = b * b - 4.0 * a * c;
 	if (d < 0.0)
 	{
-		throw std::domain_error("OMG");
+		throw std::domain_error("Equation mustn't have complex roots");
 	}
 	if (d == 0.0)
 	{
@@ -51,7 +56,7 @@ EquationRoots2 Solve2(double const& a, double const& b, double const& c)
 // ¬ычисл€ем корни кубического уравнени€ ax^3 + bx^2 + cx + d = 0
 EquationRoots3 Solve3(double a, double b, double c, double d)
 {
-	if (a <= 0.0)
+	if (a == 0.0)
 	{
 		throw std::invalid_argument("first coefficient should be > 0");
 	}
@@ -109,7 +114,7 @@ EquationRoots3 Solve3(double a, double b, double c, double d)
 // ¬ычисл€ем корни уравнени€ 4-й степени ax^4 + bx^3 + cx^2 + dx + e = 0
 EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 {
-	if (a <= 0)
+	if (a == 0.0)
 	{
 		throw std::invalid_argument("first coefficient should be > 0");
 	}
