@@ -6,7 +6,7 @@ double sgn(double const& x)
 	return (x > 0) - (x < 0);
 }
 
-//Âû÷èñëÿåì êîðíè êâàäðàòíîãî óðàâíåíèÿ  ax^2 + bx + c = 0
+// Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÑÐµÐ¼ ÐºÐ¾Ñ€Ð½Ð¸ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð½Ð¾Ð³Ð¾ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ ax^2 + bx + c = 0
 EquationRoots2 Solve2(double a, double b, double c)
 {
 	if (a == 0)
@@ -34,7 +34,7 @@ EquationRoots2 Solve2(double a, double b, double c)
 	return x;
 }
 
-// Âû÷èñëÿåì êîðíè êóáè÷åñêîãî óðàâíåíèÿ ax^3 + bx^2 + cx + d = 0
+// Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÑÐµÐ¼ ÐºÐ¾Ñ€Ð½Ð¸ ÐºÑƒÐ±Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ ax^3 + bx^2 + cx + d = 0
 EquationRoots3 Solve3(double a, double b, double c, double d)
 {
 	if (a == 0)
@@ -90,7 +90,7 @@ EquationRoots3 Solve3(double a, double b, double c, double d)
 	return x;
 }
 
-// Âû÷èñëÿåì êîðíè óðàâíåíèÿ 4-é ñòåïåíè ax^4 + bx^3 + cx^2 + dx + e = 0
+// Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÑÐµÐ¼ ÐºÐ¾Ñ€Ð½Ð¸ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ 4-Ð¹ ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸ ax^4 + bx^3 + cx^2 + dx + e = 0
 EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 {
 	if (a == 0)
