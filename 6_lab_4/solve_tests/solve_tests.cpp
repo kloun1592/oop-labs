@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../6_lab_4/6_lab_4.h"
+#include "../6_lab_4/solve.h"
 
 BOOST_AUTO_TEST_SUITE(Solve2_tests)
 	BOOST_AUTO_TEST_CASE(count_right_roots)
