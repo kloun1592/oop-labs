@@ -9,9 +9,9 @@ int main()
 		try
 		{
 			const auto roots = Solve4(a, b, c, d, e);
-			for (unsigned i = 0; i < roots.numRoots; i++)
+			for (const auto root : roots.roots)
 			{
-				std::cout << "x = " << roots.roots[i] << std::endl;
+				std::cout << "x = " << root << std::endl;
 			}
 			std::cout << std::endl;
 		}

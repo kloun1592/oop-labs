@@ -27,4 +27,4 @@ EquationRoots3 Solve3(double a, double b, double c, double d);
 // Вычисляем корни уравнения 4-й степени ax^4 + bx^3 + cx^2 + dx + e = 0
 EquationRoots4 Solve4(double a, double b, double c, double d, double e);
 
-double sgn(double const& x);
+double sgn(double x);

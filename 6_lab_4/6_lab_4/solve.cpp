@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "solve.h"
 
-double sgn(double const& x)
+double sgn(double x)
 {
 	return (x > 0) - (x < 0);
 }
@@ -25,7 +25,7 @@ EquationRoots2 Solve2(double a, double b, double c)
 		x.numRoots = 1;
 		x.roots[0] = -b / (2 * a);
 	}
-	if (d > 0.0)
+	if (d > 0)
 	{
 		x.numRoots = 2;
 		x.roots[0] = (-b + sqrt(d)) / (2 * a);
