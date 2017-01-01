@@ -8,7 +8,7 @@ int main()
 	{
 		try
 		{
-			const auto roots = Solve4(a, b, c, d, e);
+			const auto roots = Solve4(a / a, b / b, c / c, d / d, e / e);
 			for (const auto root : roots.roots)
 			{
 				std::cout << "x = " << root << std::endl;

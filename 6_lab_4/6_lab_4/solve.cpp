@@ -42,10 +42,6 @@ EquationRoots3 Solve3(double a, double b, double c, double d)
 		throw std::invalid_argument("first coefficient  mustn't be 0");
 	}
 
-	b /= a;
-	c /= a;
-	d /= a;
-
 	EquationRoots3 x;
 	const auto q = (pow(b, 2) - 3 * c) / 9;
 	const auto r = (2 * pow(b, 3) - 9 * b * c + 27 * d) / 54;
@@ -98,17 +94,12 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 		throw std::invalid_argument("first coefficient  mustn't be 0");
 	}
 
-	b /= a;
-	c /= a;
-	d /= a;
-	e /= a;
-
 	// px^3 + qx^2 + rx + s = 0
 	const auto q = -c;
 	const auto r = (b * d) - (4 * e);
 	const auto s = -1 * (b * b * e) + 4 * c * e - (d * d);
 
-	EquationRoots3 x = Solve3(1, q, r, s);
+	EquationRoots3 x = Solve3(1, q,  r, s);
 
 	auto a2 = 1;
 	auto b2 = b / 2 + sqrt((b * b) / 4 - c + x.roots[0]);
