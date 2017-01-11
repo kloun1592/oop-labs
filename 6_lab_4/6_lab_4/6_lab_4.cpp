@@ -20,5 +20,4 @@ int main()
 			std::cerr << ex.what() << std::endl << std::endl;
 		}
 	}
-	return 0;
 }

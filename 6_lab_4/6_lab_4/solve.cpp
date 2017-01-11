@@ -37,6 +37,9 @@ EquationRoots2 Solve2(double a, double b, double c)
 // Вычисляем корни кубического уравнения ax^3 + bx^2 + cx + d = 0
 EquationRoots3 Solve3(double a, double b, double c, double d)
 {
+	b /= a;
+	c /= a;
+	d /= a;
 	if (a == 0)
 	{
 		throw std::invalid_argument("first coefficient  mustn't be 0");
