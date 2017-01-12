@@ -1,5 +1,3 @@
-#include <array>
-
 struct EquationRoots4
 {
 	int numRoots = 0;
