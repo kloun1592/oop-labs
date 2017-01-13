@@ -50,5 +50,8 @@
     <ClCompile Include="..\4_lab_1\Sphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\4_lab_1\Compound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

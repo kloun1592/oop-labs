@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\4_lab_1\Body.cpp" />
+    <ClCompile Include="..\4_lab_1\Compound.cpp" />
     <ClCompile Include="..\4_lab_1\Cone.cpp" />
     <ClCompile Include="..\4_lab_1\Cylinder.cpp" />
     <ClCompile Include="..\4_lab_1\Parallelepiped.cpp" />

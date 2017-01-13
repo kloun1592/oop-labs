@@ -16,18 +16,13 @@ CCompound * CCompound::GetParent() const
 	return m_parent;
 }
 
-bool CCompound::IsCanAddedToCompound(CCompound * compound) const
+void CCompound::AppendProperties(std::ostream & strm) const
 {
-	auto currentParent = compound;
-	while (currentParent)
-	{
-		if (currentParent == this)
-		{
-			return false;
-		}
-		currentParent = currentParent->GetParent();
-	}
-	return true;
+}
+
+CCompound::CCompound()
+	: CBody("Compound", 0)
+{
 }
 
 double CCompound::GetVolume() const
@@ -45,13 +40,13 @@ double CCompound::GetDensity() const
 	return GetMass() / GetVolume();
 }
 
-bool CCompound::AddChildBody(const std::shared_ptr<CBody>& childBody)
+bool CCompound::AddChildBody(const std::shared_ptr<CBody>& child)
 {
-	if (childBody != nullptr && SetParent(this) && IsCanAddedToCompound(this))
+	if (child != nullptr && SetParent(this))
 	{
-		m_children.emplace_back(childBody);
-		m_mass += childBody->GetMass();
-		m_volume += childBody->GetVolume();
+		m_children.emplace_back(child);
+		m_mass += child->GetMass();
+		m_volume += child->GetVolume();
 		return true;
 	}
 	return false;
