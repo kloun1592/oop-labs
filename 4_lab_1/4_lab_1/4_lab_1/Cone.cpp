@@ -8,7 +8,7 @@ CCone::CCone(double density, double baseRadius, double height)
 {
 	if (height <= 0 || baseRadius <= 0 || density <= 0)
 	{
-		std::invalid_argument("Arguments should be bigger than 0 and not equally to 0");
+		throw std::invalid_argument("Arguments should be bigger than 0 and not equally to 0");
 	}
 }
 

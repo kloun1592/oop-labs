@@ -9,7 +9,7 @@ CParallelepiped::CParallelepiped(double density, double width, double height, do
 {
 	if (width <= 0 || height <= 0 || depth <= 0 || density <= 0)
 	{
-		std::invalid_argument("Arguments should be bigger than 0 and not equally to 0");
+		throw std::invalid_argument("Arguments should be bigger than 0 and not equally to 0");
 	}
 }
 
@@ -26,6 +26,11 @@ double CParallelepiped::GetHeight() const
 double CParallelepiped::GetDepth() const
 {
 	return m_depth;
+}
+
+double CParallelepiped::GetVolume() const
+{
+	return m_width * m_height * m_depth;
 }
 
 void CParallelepiped::AppendProperties(std::ostream & strm) const

@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{19428ACC-2C3C-4920-B643-C7C8AE4048A6}</ProjectGuid>
+    <ProjectGuid>{D63216DB-4D2F-42A5-8DED-2A4405C855FE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My4_lab_1</RootNamespace>
+    <RootNamespace>tests</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,29 +145,23 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Body.h" />
-    <ClInclude Include="Compound.h" />
-    <ClInclude Include="Cone.h" />
-    <ClInclude Include="Cylinder.h" />
-    <ClInclude Include="Parallelepiped.h" />
-    <ClInclude Include="Sphere.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Compound.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Body.cpp" />
-    <ClCompile Include="Cone.cpp" />
-    <ClCompile Include="Cylinder.cpp" />
-    <ClCompile Include="Parallelepiped.cpp" />
-    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="..\4_lab_1\Body.cpp" />
+    <ClCompile Include="..\4_lab_1\Cone.cpp" />
+    <ClCompile Include="..\4_lab_1\Cylinder.cpp" />
+    <ClCompile Include="..\4_lab_1\Parallelepiped.cpp" />
+    <ClCompile Include="..\4_lab_1\Sphere.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

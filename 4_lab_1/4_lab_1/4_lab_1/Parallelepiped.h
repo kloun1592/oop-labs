@@ -10,6 +10,7 @@ public:
 	double GetWidth() const;
 	double GetHeight() const;
 	double GetDepth() const;
+	double GetVolume() const override;
 protected:
 	void AppendProperties(std::ostream & strm) const override;
 private:
