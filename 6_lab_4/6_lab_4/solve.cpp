@@ -137,5 +137,13 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 		answer.roots[2] = NAN;
 		answer.roots[3] = NAN;
 	}
+
+	if (std::isnan(answer.roots[0]) &&
+		std::isnan(answer.roots[1]) &&
+		std::isnan(answer.roots[2]) &&
+		std::isnan(answer.roots[3]))
+	{
+		throw std::domain_error("Equation has only complex roots");
+	}
 	return answer;
 }
