@@ -16,7 +16,10 @@ int main()
 			const auto roots = Solve4(a, b, c, d, e);
 			for (const auto root : roots.roots)
 			{
-				std::cout << "x = " << root << std::endl;
+				if (!std::isnan(root))
+				{
+					std::cout << "x = " << root << std::endl;
+				}
 			}
 			std::cout << std::endl;
 		}
