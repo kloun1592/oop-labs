@@ -11,14 +11,14 @@ EquationRoots2 Solve2(double a, double b, double c)
 {
 	if (a == 0)
 	{
-		throw std::invalid_argument("first coefficient  mustn't be 0");
+		throw std::invalid_argument("first coefficient mustn't be 0");
 	}
 
 	EquationRoots2 x;
 	const auto d = b * b - 4 * a * c;
 	if (d < 0)
 	{
-		throw std::domain_error("Equation have only complex roots");
+		throw std::domain_error("Equation has only complex roots");
 	}
 	else if (d == 0)
 	{
@@ -42,7 +42,7 @@ EquationRoots3 Solve3(double a, double b, double c, double d)
 	d /= a;
 	if (a == 0)
 	{
-		throw std::invalid_argument("first coefficient  mustn't be 0");
+		throw std::invalid_argument("first coefficient mustn't be 0");
 	}
 
 	EquationRoots3 x;
@@ -92,7 +92,7 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 {
 	if (a == 0)
 	{
-		throw std::invalid_argument("first coefficient  mustn't be 0");
+		throw std::invalid_argument("first coefficient mustn't be 0");
 	}
 	EquationRoots4 answer;
 
