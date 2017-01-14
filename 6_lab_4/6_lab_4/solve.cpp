@@ -94,6 +94,7 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 	{
 		throw std::invalid_argument("first coefficient  mustn't be 0");
 	}
+	EquationRoots4 answer;
 
 	// px^3 + qx^2 + rx + s = 0
 	const auto q = -c;
@@ -105,15 +106,24 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 	auto a2 = 1;
 	auto b2 = b / 2 + sqrt((b * b) / 4 - c + x.roots[0]);
 	auto c2 = x.roots[0] / 2 + sqrt((x.roots[0] * x.roots[0]) / 4 - e);
-	EquationRoots2 res = Solve2(a2, b2, c2);
+	
+	try
+	{
+		EquationRoots2 res = Solve2(a2, b2, c2);
+		answer.roots[0] = res.roots[0];
+		answer.roots[1] = res.roots[1];
+	}
+	catch (const std::exception & ex)
+	{
+		b2 = b / 2 - sqrt((b * b) / 4 - c + x.roots[0]);
+		c2 = x.roots[0] / 2 - sqrt((x.roots[0] * x.roots[0]) / 4 - e);
+		EquationRoots2 res2 = Solve2(a2, b2, c2);
+	}
 
 	b2 = b / 2 - sqrt((b * b) / 4 - c + x.roots[0]);
 	c2 = x.roots[0] / 2 - sqrt((x.roots[0] * x.roots[0]) / 4 - e);
 	EquationRoots2 res2 = Solve2(a2, b2, c2);
 
-	EquationRoots4 answer;
-	answer.roots[0] = res.roots[0];
-	answer.roots[1] = res.roots[1];
 	answer.roots[2] = res2.roots[0];
 	answer.roots[3] = res2.roots[1];
 	return answer;

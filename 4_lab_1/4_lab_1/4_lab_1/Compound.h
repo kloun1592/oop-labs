@@ -22,5 +22,4 @@ private:
 	std::vector<std::shared_ptr<CBody>> m_children;
 	double m_volume = 0;
 	double m_mass = 0;
-
 };
