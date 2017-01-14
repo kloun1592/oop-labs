@@ -20,12 +20,12 @@ EquationRoots2 Solve2(double a, double b, double c)
 	{
 		throw std::domain_error("Equation have only complex roots");
 	}
-	if (d == 0)
+	else if (d == 0)
 	{
 		x.numRoots = 1;
 		x.roots[0] = -b / (2 * a);
 	}
-	if (d > 0)
+	else
 	{
 		x.numRoots = 2;
 		x.roots[0] = (-b + sqrt(d)) / (2 * a);
@@ -57,9 +57,8 @@ EquationRoots3 Solve3(double a, double b, double c, double d)
 		x.roots[0] = 2 * sqrt(q) * cos(phi) - (b / 3);
 		x.roots[1] = 2 * sqrt(q) * cos(phi + (M_PI * 2) / 3) - b / 3;
 		x.roots[2] = 2 * sqrt(q) * cos(phi - (M_PI * 2) / 3) - b / 3;
-	}
-
-	if (s < 0)
+	} 
+	else if (s < 0)
 	{
 		if (q > 0)
 		{
@@ -79,8 +78,7 @@ EquationRoots3 Solve3(double a, double b, double c, double d)
 			x.roots[0] = -1 * cbrt(c - (b * b * b) / 27) - (b / 3);
 		}
 	}
-
-	if (s == 0)
+	else
 	{
 		x.numRoots = 2;
 		x.roots[0] = -2 * cbrt(r) - (b / 3);
