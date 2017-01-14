@@ -62,7 +62,6 @@ BOOST_AUTO_TEST_SUITE(Solve4_tests)
 		auto x = Solve4(1, 0, 0, 0, 0);
 		BOOST_CHECK_EQUAL(x.roots[0], 0.0);
 		BOOST_CHECK_EQUAL(x.roots[1], 0.0);
-		BOOST_CHECK_EQUAL(x.roots[2], 0.0);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_incorrect_first_argument)
