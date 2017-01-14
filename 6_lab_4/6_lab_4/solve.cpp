@@ -115,6 +115,8 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 	}
 	catch (const std::exception & ex)
 	{
+		answer.roots[0] = NAN;
+		answer.roots[1] = NAN;
 		b2 = b / 2 - sqrt((b * b) / 4 - c + x.roots[0]);
 		c2 = x.roots[0] / 2 - sqrt((x.roots[0] * x.roots[0]) / 4 - e);
 		EquationRoots2 res2 = Solve2(a2, b2, c2);
