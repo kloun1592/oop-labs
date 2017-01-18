@@ -40,6 +40,14 @@ BOOST_AUTO_TEST_SUITE(Solve3_tests)
 		BOOST_CHECK_EQUAL(x.roots[0], 0.5);
 	}
 
+	BOOST_AUTO_TEST_CASE(has_3_roots)
+	{
+		auto x = Solve3(1, 2, -5, -6);
+		BOOST_CHECK_EQUAL(x.roots[0], -3);
+		BOOST_CHECK_EQUAL(x.roots[1], 2);
+		BOOST_CHECK_CLOSE_FRACTION(x.roots[2], -1, 10e-6);
+	}
+
 	BOOST_AUTO_TEST_CASE(has_1_root)
 	{
 		auto x = Solve3(1, -1, -1, -2);

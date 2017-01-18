@@ -8,11 +8,6 @@ int main()
 	{
 		try
 		{
-			b /= a;
-			c /= a;
-			d /= a;
-			e /= a;
-			a /= a;
 			const auto roots = Solve4(a, b, c, d, e);
 			for (const auto root : roots.roots)
 			{
