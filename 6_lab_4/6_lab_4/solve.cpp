@@ -7,13 +7,8 @@ double sgn(double x)
 }
 
 // Вычисляем корни квадратного уравнения ax^2 + bx + c = 0
-EquationRoots2 Solve2(double a, double b, double c)
+EquationRoots2 Solve2Discriminant(double a, double b, double c)
 {
-	if (a == 0)
-	{
-		throw std::invalid_argument("first coefficient mustn't be 0");
-	}
-
 	EquationRoots2 x;
 	const auto d = b * b - 4 * a * c;
 	if (d < 0)
@@ -32,6 +27,15 @@ EquationRoots2 Solve2(double a, double b, double c)
 		x.roots[1] = (-b - sqrt(d)) / (2 * a);
 	}
 	return x;
+}
+
+EquationRoots2 Solve2(double a, double b, double c)
+{
+	if (a == 0)
+	{
+		throw std::invalid_argument("first coefficient mustn't be 0");
+	}
+	return Solve2Discriminant(a, b, c);
 }
 
 // Вычисляем корни кубического уравнения x^3 + bx^2 + cx + d = 0
