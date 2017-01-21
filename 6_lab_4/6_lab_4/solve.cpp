@@ -7,7 +7,7 @@ double sgn(double x)
 }
 
 // Вычисляем корни квадратного уравнения ax^2 + bx + c = 0
-EquationRoots2 Solve2Discriminant(double a, double b, double c)
+EquationRoots2 Solve2ByDiscriminant(double a, double b, double c)
 {
 	EquationRoots2 x;
 	const auto d = b * b - 4 * a * c;
@@ -35,11 +35,11 @@ EquationRoots2 Solve2(double a, double b, double c)
 	{
 		throw std::invalid_argument("first coefficient mustn't be 0");
 	}
-	return Solve2Discriminant(a, b, c);
+	return Solve2ByDiscriminant(a, b, c);
 }
 
 // Вычисляем корни кубического уравнения x^3 + bx^2 + cx + d = 0
-EquationRoots3 Solve3Viete(double a, double b, double c)
+EquationRoots3 Solve3ByViete(double a, double b, double c)
 {
 	EquationRoots3 x;
 	const auto q = (pow(a, 2) - 3 * b) / 9;
@@ -89,11 +89,11 @@ EquationRoots3 Solve3(double a, double b, double c, double d)
 	{
 		throw std::invalid_argument("first coefficient mustn't be 0");
 	}
-	return Solve3Viete(b / a, c / a, d / a);
+	return Solve3ByViete(b / a, c / a, d / a);
 }
 
 // Вычисляем корни уравнения 4-й степени x^4 + ax^3 + bx^2 + cx + d = 0
-EquationRoots4 Solve4Ferrari(double a, double b, double c, double d)
+EquationRoots4 Solve4ByFerrari(double a, double b, double c, double d)
 {
 	EquationRoots4 answer;
 
@@ -155,5 +155,5 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 	{
 		throw std::invalid_argument("first coefficient mustn't be 0");
 	}
-	return Solve4Ferrari(b / a, c / a, d / a, e / a);
+	return Solve4ByFerrari(b / a, c / a, d / a, e / a);
 }
