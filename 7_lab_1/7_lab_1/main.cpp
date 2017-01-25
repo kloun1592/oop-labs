@@ -3,8 +3,16 @@
 template <typename T>
 T ArraySum(std::vector<T> const& arr)
 {
-	return !arr.empty() ? std::accumulate(arr.begin(), arr.end(), T()) 
-						: T();
+	if (!arr.empty())
+	{
+		auto sum = T();
+		for (auto elem: arr)
+		{
+			sum += elem;
+		}
+		return sum;
+	}
+	return T();
 }
 
 int main()
@@ -19,7 +27,7 @@ int main()
 	std::cout << "Str sum: " << ArraySum(arrStr) << std::endl;
 
 	std::vector<int> arrEmpty;
-	std::cout << "Int sum2: " << ArraySum(arrEmpty) << std::endl;
+	std::cout << "Empty sum: " << ArraySum(arrEmpty) << std::endl;
 
 	return 0;
 }
