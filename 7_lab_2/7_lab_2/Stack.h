@@ -25,14 +25,14 @@ private:
 };
 
 template <typename T>
-CMyStack<T>::CMyStack(int maxSize) 
+CMyStack<T>::CMyStack(int maxSize)
 	:m_size(maxSize)
 {
 	m_stackPtr = new T[m_size * 2];
 }
 
 template <typename T>
-CMyStack<T>::CMyStack(const CMyStack<T> & otherStack) 
+CMyStack<T>::CMyStack(const CMyStack<T> & otherStack)
 	:m_size(otherStack.GetStackSize())
 {
 	m_stackPtr = new T[m_size];
@@ -75,7 +75,7 @@ void CMyStack<T>::Pop()
 {
 	assert(m_top > 0);
 	--m_top;
-	m_stackPtr[m_top]  = T();
+	m_stackPtr[m_top] = T();
 }
 
 template <typename T>
@@ -108,7 +108,7 @@ int CMyStack<T>::GetTop() const
 template<typename T>
 T CMyStack<T>::GetTopElement() const
 {
-	return m_top != 0 ? m_stackPtr[m_top - 1] : T();
+	return m_top != 0 ? m_stackPtr[m_top - 1] : throw std::bad_alloc();
 }
 
 template<typename T>
