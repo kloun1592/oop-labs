@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "../7_lab_2/Stack.h"
+#include <stack>
 
 using boost::test_tools::output_test_stream;
 
@@ -53,7 +54,7 @@ BOOST_AUTO_TEST_SUITE(Stack)
 		stack.Push("str");
 		stack.Push("str2");
 		stack.Clear();
-		BOOST_CHECK_EQUAL(stack.GetTopElement(), "");
+		BOOST_CHECK_THROW(stack.GetTopElement(), std::bad_alloc);
 		BOOST_CHECK_EQUAL(stack.GetStackSize(), 2);
 		BOOST_CHECK_EQUAL(stack.GetTop(), 0);
 	}

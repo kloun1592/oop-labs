@@ -15,7 +15,7 @@ int main()
 	std::cout << "Stack before pop: " << std::endl;
 	stringStack.PrintStack();
 
-	/*std::cout << "Stack after pop: " << std::endl;
+	std::cout << "Stack after pop: " << std::endl;
 	stringStack.Pop();
 	stringStack.PrintStack();
 
@@ -51,6 +51,6 @@ int main()
 
 	std::cout << "Stack after clear: " << std::endl;
 	intStack.Clear();
-	intStack.PrintStack();*/
+	intStack.PrintStack();
 	return 0;
 }
