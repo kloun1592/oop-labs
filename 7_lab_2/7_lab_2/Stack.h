@@ -3,11 +3,11 @@ class CMyStack
 {
 public:
 	CMyStack(int maxSize);
-	CMyStack(const CMyStack<T> &);
-	CMyStack(const CMyStack<T> &&);
+	CMyStack(const CMyStack<T> & otherStack);
+	CMyStack(const CMyStack<T> && otherStack);
 	~CMyStack();
 
-	void Push(const T &);
+	void Push(const T &value);
 	void Pop();
 	void PrintStack();
 	int GetStackSize() const;
