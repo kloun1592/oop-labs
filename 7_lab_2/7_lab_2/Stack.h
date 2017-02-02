@@ -3,15 +3,8 @@ class CMyStack
 {
 public:
 	CMyStack() = default;
-	CMyStack(CMyStack<T> && other)
-	{
-		m_firstNode = std::move(other.m_firstNode);
-		m_lastNode = other.m_lastNode;
-		m_size = other.m_size;
-		other.m_lastNode = nullptr;
-		other.m_size = 0;
-	}
-
+	CMyStack(CMyStack<T> & other);
+	CMyStack(CMyStack<T> && other);
 	struct Node
 	{
 		Node(const T & data, Node * prev, std::unique_ptr<Node> && next)
@@ -37,6 +30,28 @@ private:
 	size_t m_size;
 };
 
+template<typename T>
+inline CMyStack<T>::CMyStack(CMyStack<T>& other)
+{
+	CMyStack<T> tmp;
+	tmp.m_size = other.GetStackSize();
+	for (auto it = other.m_firstNode.get(); it != nullptr; it = it->next.get())
+	{
+		tmp.Push(it->data);
+	}
+	std::swap(tmp, *this);
+}
+
+template <typename T>
+CMyStack<T>::CMyStack(CMyStack<T> && other)
+{
+	m_firstNode = std::move(other.m_firstNode);
+	m_lastNode = other.m_lastNode;
+	m_size = other.m_size;
+	other.m_lastNode = nullptr;
+	other.m_size = 0;
+}
+
 template <typename T>
 void CMyStack<T>::Push(const T &value)
 {
@@ -46,7 +61,7 @@ void CMyStack<T>::Push(const T &value)
 	{
 		m_lastNode->next = std::move(newNode);
 	}
-	else // empty list
+	else
 	{
 		m_firstNode = std::move(newNode);
 	}
@@ -57,6 +72,7 @@ void CMyStack<T>::Push(const T &value)
 template <typename T>
 void CMyStack<T>::Pop()
 {
+	assert(!IsEmpty());
 	if (m_firstNode.get() == m_lastNode)
 	{
 		m_lastNode = nullptr;
@@ -81,7 +97,7 @@ T CMyStack<T>::GetTopElement() const
 {
 	if (IsEmpty())
 	{
-		throw std::bad_alloc();
+		throw std::underflow_error("Stack is empty!");
 	}
 	return m_lastNode->data;
 }

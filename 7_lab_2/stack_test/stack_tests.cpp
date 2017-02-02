@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_SUITE(Stack)
 	{
 		CMyStack<std::string> stack;
 		stack.Push("str");
-		CMyStack<std::string> stack2;
+		CMyStack<std::string> stack2(stack);
 		output_test_stream output("out.txt", true);
 		BOOST_CHECK(output.match_pattern());
 	}
