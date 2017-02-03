@@ -42,8 +42,13 @@ BOOST_AUTO_TEST_SUITE(Stack)
 		stack.Push("str");
 		stack.Push("str2");
 		stack.Clear();
-		//BOOST_CHECK_THROW(stack.GetTopElement(), std::bad_alloc);
 		BOOST_CHECK_EQUAL(stack.GetStackSize(), 0);
+	}
+
+	BOOST_AUTO_TEST_CASE(throw_exception_after_pop_when_stack_is_empty)
+	{
+		CMyStack<std::string> stack;
+		BOOST_CHECK_THROW(stack.Pop() , std::logic_error);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_correct_values_after_replace_operator)
