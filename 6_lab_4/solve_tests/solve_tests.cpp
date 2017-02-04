@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "../6_lab_4/solve.h"
 
 BOOST_AUTO_TEST_SUITE(Solve2_tests)
@@ -70,6 +70,25 @@ BOOST_AUTO_TEST_SUITE(Solve4_tests)
 		auto x = Solve4(1, 0, 0, 0, 0);
 		BOOST_CHECK_EQUAL(x.roots[0], 0.0);
 		BOOST_CHECK_EQUAL(x.roots[1], 0.0);
+	}
+
+	BOOST_AUTO_TEST_CASE(has_only_complex_roots)
+	{
+		BOOST_CHECK_THROW(Solve4(1, 2, 3, 4, 5), std::domain_error);
+	}
+
+	BOOST_AUTO_TEST_CASE(has_only_2_roots)
+	{
+		auto x = Solve4(2, 0, 5, 0, -3);
+		BOOST_CHECK_CLOSE_FRACTION(x.roots[2], 0.7071, 0.0001);
+		BOOST_CHECK_CLOSE_FRACTION(x.roots[3], -0.7071, 0.0001);
+	}
+
+	BOOST_AUTO_TEST_CASE(has_only_2_roots_in_other_situation)
+	{
+		auto x = Solve4(1, 9, 8, 7, 6);
+		BOOST_CHECK_CLOSE_FRACTION(x.roots[1], -8.1086, 0.0001);
+		BOOST_CHECK_CLOSE_FRACTION(x.roots[0], -0.9232, 0.0001);
 	}
 
 	BOOST_AUTO_TEST_CASE(has_incorrect_first_argument)

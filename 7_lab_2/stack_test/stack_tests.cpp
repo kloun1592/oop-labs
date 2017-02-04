@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_SUITE(Stack)
 	{
 		CMyStack<std::string> stack;
 		BOOST_CHECK_THROW(stack.Pop() , std::logic_error);
-	}
+	}	
 
 	BOOST_AUTO_TEST_CASE(has_correct_values_after_replace_operator)
 	{

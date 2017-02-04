@@ -44,7 +44,6 @@ inline CMyStack<T>::CMyStack(CMyStack<T> const& other)
 template <typename T>
 CMyStack<T>::CMyStack(CMyStack<T> && other)
 {
-	Clear();
 	m_firstNode = std::move(other.m_firstNode);
 	m_lastNode = other.m_lastNode;
 	m_size = other.m_size;

@@ -1,18 +1,17 @@
 #include "stdafx.h"
 
 template <typename T>
-T ArraySum(std::vector<T> const& arr, T && beginValue)
+T ArraySum(std::vector<T> const& arr, T beginValue)
 {
 	if (!arr.empty())
 	{
-		auto sum = beginValue;
-		for (auto elem: arr)
+		for (auto const& elem: arr)
 		{
-			sum += elem;
+			beginValue += elem;
 		}
-		return sum;
+		return beginValue;
 	}
-	return T();
+	return beginValue;
 }
 
 int main()
