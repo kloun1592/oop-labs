@@ -3,13 +3,9 @@
 template <typename T>
 T ArraySum(std::vector<T> const& arr, T beginValue)
 {
-	if (!arr.empty())
+	for (auto const& elem: arr)
 	{
-		for (auto const& elem: arr)
-		{
-			beginValue += elem;
-		}
-		return beginValue;
+		beginValue += elem;
 	}
 	return beginValue;
 }
