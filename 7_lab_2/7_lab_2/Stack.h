@@ -8,12 +8,12 @@ public:
 	~CMyStack();
 	struct Node
 	{
-		Node(const T & data, std::unique_ptr<Node> && next)
-			: data(data), next(std::move(next))
+		Node(const T & data, std::shared_ptr<Node> const& next)
+			: data(data), next(next)
 		{
 		}
 		T data;
-		std::unique_ptr<Node> next;
+		std::shared_ptr<Node> next;
 	};
 	
 	void Push(const T &value);
@@ -25,8 +25,7 @@ public:
 	CMyStack<T> & operator=(const CMyStack<T> & otherStack);
 	CMyStack<T> & operator=(CMyStack<T> && otherStack);
 private:
-	std::unique_ptr<Node> m_firstNode = nullptr;
-	Node * m_lastNode = nullptr;
+	std::shared_ptr<Node> m_topElem = nullptr;
 	size_t m_size;
 };
 
@@ -34,7 +33,7 @@ template<typename T>
 inline CMyStack<T>::CMyStack(CMyStack<T> const& other)
 {
 	CMyStack<T> tmp;
-	for (auto it = other.m_firstNode.get(); it != nullptr; it = it->next.get())
+	for (auto it = other.m_topElem.get(); it != nullptr; it = it->next.get())
 	{
 		tmp.Push(it->data);
 	}
@@ -44,10 +43,9 @@ inline CMyStack<T>::CMyStack(CMyStack<T> const& other)
 template <typename T>
 CMyStack<T>::CMyStack(CMyStack<T> && other)
 {
-	m_firstNode = std::move(other.m_firstNode);
-	m_lastNode = other.m_lastNode;
+	m_topElem = std::move(other.m_topElem);
 	m_size = other.m_size;
-	other.m_lastNode = nullptr;
+	other.m_topElem = nullptr;
 	other.m_size = 0;
 }
 
@@ -60,17 +58,8 @@ CMyStack<T>::~CMyStack()
 template <typename T>
 void CMyStack<T>::Push(const T &value)
 {
-	auto newNode = std::make_unique<Node>(value, nullptr);
-	Node *newLastNode = newNode.get();
-	if (m_lastNode)
-	{
-		m_lastNode->next = std::move(newNode);
-	}
-	else
-	{
-		m_firstNode = std::move(newNode);
-	}
-	m_lastNode = newLastNode;
+	auto newNode = std::make_shared<Node>(value, m_topElem);
+	m_topElem = newNode;
 	++m_size;
 }
 
@@ -81,23 +70,8 @@ void CMyStack<T>::Pop()
 	{
 		throw std::logic_error("Stack is empty");
 	}
-	else if (m_firstNode.get() == m_lastNode)
-	{
-		m_lastNode = nullptr;
-		m_firstNode = nullptr;
-	}
-	else
-	{
-		auto it = m_firstNode.get();
-		for (size_t index = 0; index < m_size - 1; ++index, it = it->next.get())
-		{
-			if (index == (m_size - 2))
-			{
-				it->next = nullptr;
-				m_lastNode = it;
-			}
-		}
-	}
+	m_topElem->data.~T();
+	m_topElem = m_topElem->next;
 	--m_size;
 }
 
@@ -114,7 +88,7 @@ T CMyStack<T>::GetTopElement() const
 	{
 		throw std::logic_error("Stack is empty");
 	}
-	return m_lastNode->data;
+	return m_topElem->data;
 }
 
 template<typename T>
@@ -149,10 +123,8 @@ CMyStack<T> & CMyStack<T>::operator=(CMyStack<T> && otherStack)
 	if (&otherStack != this)
 	{
 		Clear();
-		m_firstNode = std::move(otherStack.m_firstNode);
-		m_lastNode = otherStack.m_lastNode;
+		m_topElem = std::move(otherStack.m_topElem);
 		m_size = otherStack.m_size;
-		otherStack.m_lastNode = nullptr;
 		otherStack.m_size = 0;
 	}
 	return *this;
