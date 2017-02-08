@@ -8,12 +8,12 @@ public:
 	~CMyStack();
 	struct Node
 	{
-		Node(const T & data, std::shared_ptr<Node> const& next)
-			: data(data), next(next)
+		Node(const T & data, std::unique_ptr<Node> & next)
+			: data(data), next(std::move(next))
 		{
 		}
 		T data;
-		std::shared_ptr<Node> next;
+		std::unique_ptr<Node> next;
 	};
 	
 	void Push(const T &value);
@@ -25,12 +25,12 @@ public:
 	CMyStack<T> & operator=(const CMyStack<T> & otherStack);
 	CMyStack<T> & operator=(CMyStack<T> && otherStack);
 private:
-	std::shared_ptr<Node> m_topElem = nullptr;
+	std::unique_ptr<Node> m_topElem = nullptr;
 	size_t m_size;
 };
 
 template<typename T>
-inline CMyStack<T>::CMyStack(CMyStack<T> const& other)
+CMyStack<T>::CMyStack(CMyStack<T> const& other)
 {
 	CMyStack<T> tmp;
 	for (auto it = other.m_topElem.get(); it != nullptr; it = it->next.get())
@@ -45,7 +45,6 @@ CMyStack<T>::CMyStack(CMyStack<T> && other)
 {
 	m_topElem = std::move(other.m_topElem);
 	m_size = other.m_size;
-	other.m_topElem = nullptr;
 	other.m_size = 0;
 }
 
@@ -58,8 +57,7 @@ CMyStack<T>::~CMyStack()
 template <typename T>
 void CMyStack<T>::Push(const T &value)
 {
-	auto newNode = std::make_shared<Node>(value, m_topElem);
-	m_topElem = newNode;
+	m_topElem = std::make_unique<Node>(value, m_topElem);
 	++m_size;
 }
 
@@ -71,7 +69,7 @@ void CMyStack<T>::Pop()
 		throw std::logic_error("Stack is empty");
 	}
 	m_topElem->data.~T();
-	m_topElem = m_topElem->next;
+	m_topElem = std::move(m_topElem->next);
 	--m_size;
 }
 

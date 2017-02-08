@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{19428ACC-2C3C-4920-B643-C7C8AE4048A6}</ProjectGuid>
+    <ProjectGuid>{C84D4E1F-138C-4F89-8583-AFB775CBCEAD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My4_lab_1</RootNamespace>
+    <RootNamespace>My6_lab_add_1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -84,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
@@ -142,29 +142,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Body.h" />
-    <ClInclude Include="Compound.h" />
-    <ClInclude Include="Cone.h" />
-    <ClInclude Include="Cylinder.h" />
-    <ClInclude Include="Parallelepiped.h" />
-    <ClInclude Include="Sphere.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StringStack.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Compound.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Body.cpp" />
-    <ClCompile Include="Cone.cpp" />
-    <ClCompile Include="Cylinder.cpp" />
-    <ClCompile Include="Parallelepiped.cpp" />
-    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StringStack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
