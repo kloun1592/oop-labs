@@ -51,6 +51,12 @@ BOOST_AUTO_TEST_CASE(throw_exception_after_pop_when_stack_is_empty)
 	BOOST_CHECK_THROW(stack.Pop(), std::logic_error);
 }
 
+BOOST_AUTO_TEST_CASE(throw_exception_after_get_top_element_when_stack_is_empty)
+{
+	CStringStack stack;
+	BOOST_CHECK_THROW(stack.GetTopElement(), std::logic_error);
+}
+
 BOOST_AUTO_TEST_CASE(has_correct_values_after_replace_operator)
 {
 	CStringStack stack;
