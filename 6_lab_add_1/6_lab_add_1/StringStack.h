@@ -2,7 +2,7 @@ class CStringStack
 {
 public:
 	CStringStack() = default;
-	CStringStack(CStringStack const& other);
+	CStringStack(const CStringStack & other);
 	CStringStack(CStringStack && other);
 	~CStringStack();
 	struct Node
@@ -21,8 +21,10 @@ public:
 	void Clear();
 	bool IsEmpty() const;
 	std::string GetTopElement() const;
+	CStringStack Reverse();
 	CStringStack & operator=(const CStringStack & otherStack);
 	CStringStack & operator=(CStringStack && otherStack);
+
 private:
 	std::unique_ptr<Node> m_topElem = nullptr;
 	size_t m_size;

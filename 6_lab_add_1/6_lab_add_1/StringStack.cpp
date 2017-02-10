@@ -1,14 +1,21 @@
 #include "stdafx.h"
 #include "StringStack.h"
 
-CStringStack::CStringStack(CStringStack const& other)
+CStringStack CStringStack::Reverse()
 {
 	CStringStack tmp;
-	for (auto it = other.m_topElem.get(); it != nullptr; it = it->next.get())
+	for (auto it = this->m_topElem.get(); it != nullptr; it = it->next.get())
 	{
 		tmp.Push(it->data);
 	}
 	std::swap(tmp, *this);
+	return *this;
+}
+
+CStringStack::CStringStack(const CStringStack & other)
+{
+	CStringStack tmp = Reverse();
+	tmp = Reverse();
 }
 
 CStringStack::CStringStack(CStringStack && other)

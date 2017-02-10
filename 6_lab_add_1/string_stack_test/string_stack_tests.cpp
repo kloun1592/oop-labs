@@ -59,30 +59,49 @@ BOOST_AUTO_TEST_CASE(throw_exception_after_get_top_element_when_stack_is_empty)
 
 BOOST_AUTO_TEST_CASE(has_correct_values_after_replace_operator)
 {
-	CStringStack stack;
-	stack.Push("str");
-	CStringStack stack2;
-	stack2 = std::move(stack);
-	output_test_stream output("out.txt", true);
-	BOOST_CHECK(output.match_pattern());
+	/*CStringStack stack;
+	stack.Push("0");
+	stack.Push("1");
+	stack.Push("2");
+	auto clone = std::move(stack);
+	BOOST_CHECK_EQUAL(stack.GetStackSize(), 3);
+	BOOST_CHECK_EQUAL(stack.GetTopElement(), "2");
+	stack.Pop();
+	BOOST_CHECK_EQUAL(stack.GetTopElement(), "1");
+	stack.Pop();
+	BOOST_CHECK_EQUAL(stack.GetTopElement(), "0");
+	stack.Pop();*/
 }
 
 BOOST_AUTO_TEST_CASE(has_correct_values_after_copying_operator)
 {
 	CStringStack stack;
-	stack.Push("str");
-	CStringStack stack2;
-	stack2 = stack;
-	output_test_stream output("out.txt", true);
-	BOOST_CHECK(output.match_pattern());
+	stack.Push("0");
+	stack.Push("1");
+	stack.Push("2");
+	auto clone = stack;
+	BOOST_CHECK_EQUAL(stack.GetStackSize(), 3);
+	BOOST_CHECK_EQUAL(stack.GetTopElement(), "2");
+	stack.Pop();
+	BOOST_CHECK_EQUAL(stack.GetTopElement(), "1");
+	stack.Pop();
+	BOOST_CHECK_EQUAL(stack.GetTopElement(), "0");
+	stack.Pop();
 }
 
 BOOST_AUTO_TEST_CASE(has_correct_values_after_copying_constructor)
 {
 	CStringStack stack;
-	stack.Push("str");
-	CStringStack stack2(stack);
-	output_test_stream output("out.txt", true);
-	BOOST_CHECK(output.match_pattern());
+	stack.Push("0");
+	stack.Push("1");
+	stack.Push("2");
+	auto clone(stack);
+	BOOST_CHECK_EQUAL(clone.GetStackSize(), 3);
+	BOOST_CHECK_EQUAL(clone.GetTopElement(), "2");
+	clone.Pop();
+	BOOST_CHECK_EQUAL(clone.GetTopElement(), "1");
+	clone.Pop();
+	BOOST_CHECK_EQUAL(clone.GetTopElement(), "0");
+	clone.Pop();
 }
 BOOST_AUTO_TEST_SUITE_END()
