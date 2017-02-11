@@ -22,6 +22,7 @@ public:
 	void Clear();
 	bool IsEmpty() const;
 	T GetTopElement() const;
+	CMyStack<T> Reverse() const;
 	CMyStack<T> & operator=(const CMyStack<T> & otherStack);
 	CMyStack<T> & operator=(CMyStack<T> && otherStack);
 private:
@@ -30,13 +31,21 @@ private:
 };
 
 template<typename T>
-CMyStack<T>::CMyStack(CMyStack<T> const& other)
+CMyStack<T> CMyStack<T>::Reverse() const
 {
 	CMyStack<T> tmp;
-	for (auto it = other.m_topElem.get(); it != nullptr; it = it->next.get())
+	for (auto it = m_topElem.get(); it != nullptr; it = it->next.get())
 	{
 		tmp.Push(it->data);
 	}
+	return tmp;
+}
+
+template<typename T>
+CMyStack<T>::CMyStack(CMyStack<T> const& other)
+{
+	auto tmp = other.Reverse();
+	tmp = tmp.Reverse();
 	std::swap(tmp, *this);
 }
 

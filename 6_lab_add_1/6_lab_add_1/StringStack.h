@@ -20,8 +20,8 @@ public:
 	size_t GetStackSize() const;
 	void Clear();
 	bool IsEmpty() const;
+	CStringStack Reverse() const;
 	std::string GetTopElement() const;
-	CStringStack Reverse();
 	CStringStack & operator=(const CStringStack & otherStack);
 	CStringStack & operator=(CStringStack && otherStack);
 

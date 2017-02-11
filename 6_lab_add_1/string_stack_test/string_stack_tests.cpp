@@ -59,18 +59,11 @@ BOOST_AUTO_TEST_CASE(throw_exception_after_get_top_element_when_stack_is_empty)
 
 BOOST_AUTO_TEST_CASE(has_correct_values_after_replace_operator)
 {
-	/*CStringStack stack;
-	stack.Push("0");
-	stack.Push("1");
-	stack.Push("2");
-	auto clone = std::move(stack);
-	BOOST_CHECK_EQUAL(stack.GetStackSize(), 3);
-	BOOST_CHECK_EQUAL(stack.GetTopElement(), "2");
-	stack.Pop();
-	BOOST_CHECK_EQUAL(stack.GetTopElement(), "1");
-	stack.Pop();
-	BOOST_CHECK_EQUAL(stack.GetTopElement(), "0");
-	stack.Pop();*/
+	CStringStack stack;
+	stack.Push("str");
+	CStringStack clone = std::move(stack);
+	output_test_stream output("out.txt", true);
+	BOOST_CHECK(output.match_pattern());
 }
 
 BOOST_AUTO_TEST_CASE(has_correct_values_after_copying_operator)
